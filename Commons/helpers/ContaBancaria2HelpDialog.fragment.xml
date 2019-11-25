@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		title="Conta Bancaria"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{
+			path: '/ContaBancaria',
+			sorter:{
+				path: 'Codigo'
+			}
+		}"
+		search="_handleValueHelpSearch"
+		confirm="_handleValueHelpClose"
+		cancel="_handleValueHelpClose">
+		<columns>
+			<Column>
+				<header>
+					<Text text="Conta Bancaria"/>
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<ObjectIdentifier
+						title="{Conta} {Descricao}"
+						text="{Codigo}"/>
+			</cells>
+		</ColumnListItem>
+		
+	</TableSelectDialog>
+</core:FragmentDefinition>

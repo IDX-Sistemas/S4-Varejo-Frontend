@@ -1,0 +1,128 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "Funcionarios",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "Funcionarios",
+		"description": "Cadastro de Funcionarios",
+		"dataSources": {
+			"default":{
+				"uri": "proxy/idx/odata/service.svc/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		}
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"fullWidth": true
+	},
+
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "Funcionarios.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"handleValidation": true,
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "Funcionarios.i18n.i18n"
+				}
+			},
+			"":{
+				"dataSource": "default",
+				"preload": true,
+				"settings": {
+					"earlyRequests": true,
+					"operationMode": "Server",
+					"synchronizationMode": "None",
+					"updateGroupId" : "updGroup",
+					"autoExpandSelect": true,
+					"groupId": "$auto"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "Funcionarios.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true,
+				"transition": "slide"
+			},
+			"routes": [{
+				"name": "RouteApp",
+				"pattern": "",
+				"target": "TargetApp"
+			},{
+				"name": "Add",
+				"pattern": "Add",
+				"target": "Add"
+			},{
+				"name": "Edit",
+				"pattern": "Edit/{id}",
+				"target": "Edit"
+			}],
+			"targets": {
+				"TargetApp": {
+					"viewType": "XML",
+					"viewLevel": 1,
+					"viewName": "App"
+				},
+				"Add": {
+					"viewType": "XML",
+					"viewLevel": 2,
+					"viewName": "FormAdd"
+				},
+				"Edit": {
+					"viewType": "XML",
+					"viewLevel": 2,
+					"viewName": "FormEdit"
+				}
+			}
+		}
+	}
+}

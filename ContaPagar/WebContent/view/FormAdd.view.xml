@@ -1,0 +1,172 @@
+ <mvc:View controllerName="ContaPagar.controller.FormAdd"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="form"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Incluir Conta a Pagar"
+				singleContainerFullSize="true">
+				<f:content>
+					<Title xmlns="sap.ui.core" text="Dados do Titulo"/> 
+					
+					<Label text="Numero"/>
+					<MaskInput mask="CCCCCC/C" value="{Duplicata}" placeholderSymbol="_" required="true">
+						<rules>
+							<MaskInputRule maskFormatSymbol="C" regex="[A-Z0-9]"/>
+						</rules>
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L3 M3 S4" />
+						</layoutData>
+					</MaskInput> 
+					
+					<Label text="Nota Fiscal"/>
+					<Input value="{NotaFiscal}" width="50%"/>
+					
+					<Label text="Loja"/>
+					<Input required="true" id="Loja"
+						showValueHelp="true"
+						textFormatMode="KeyValue"
+						selectedKey="{Loja}"
+						showSuggestion="true"
+						suggestionItems="{/Lojas}"
+						suggest="handleSuggestLoja"
+						startSuggestion="2"
+						valueHelpRequest="handleSearchLoja"
+						valueHelpOnly="true"
+						width="50%" >
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}"/>
+						</suggestionItems>
+					</Input>
+					
+					<Label text="Fornecedor" />
+					<Input required="true" id="Fornecedor"
+						showValueHelp="true"
+						textFormatMode="KeyValue"
+						selectedKey="{Fornecedor}"
+						showSuggestion="true"
+						suggestionItems="{/Fornecedores}"
+						suggest="handleSuggestFornecedor"
+						startSuggestion="2"
+						valueHelpRequest="handleSearchFornecedor"
+						valueHelpOnly="true" >
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{RazaoSocial}" additionalText="{Codigo}" />
+						</suggestionItems>
+					</Input>
+					
+					
+					<Label text="Historico"/>
+					<Input value="{Historico}" />
+					
+					
+					<Label text="Emissao" />
+					<DatePicker dateValue="{DataEmissao}" editable="true"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="40%" required="true"/>
+						
+					<Label text="Recebimento" />
+					<DatePicker dateValue="{DataRecebimento}" editable="true"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="40%" required="true"/>
+					
+					
+					<Label text="Pagamento" />
+					<DatePicker dateValue="{DataPagamento}" editable="false"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="40%"/>
+						
+					
+					
+					
+					<core:Title text=" "/>
+					<Label text="Documento"/>
+					<Input value="{NumeroDocumento}" width="50%" />
+					
+					<Label text="Cheque"/>
+					<Input value="{NumeroCheque}" editable="false" width="50%"/>
+					
+					<Label text="C/C"/>
+					<Input value="{CodigoConta}" editable="false" width="50%" />
+					
+					<Label text="Valor" />
+					<Input width="50%" textAlign="End"
+						value="{
+							path: 'ValorDuplicata',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+					
+					<Label text="Juros" />
+					<Input textAlign="End" width="50%"
+						value="{
+							path: 'Juros',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+					<Label text="Desconto"  />
+					<Input editable="true" width="50%" textAlign="End"
+						value="{
+							path: 'Desconto',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+					<Label text="Valor Pago"  />
+					<Input editable="false" width="50%" textAlign="End"
+						value="{
+							path: 'ValorPago',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+				</f:content>	
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save"   press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

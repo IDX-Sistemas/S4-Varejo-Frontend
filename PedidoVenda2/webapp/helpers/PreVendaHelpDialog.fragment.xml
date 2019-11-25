@@ -1,0 +1,75 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		title="Selecionar Pre-venda (CI)"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{
+			path: '/PreVenda',
+			filters:[
+				{path: 'Finalizado', operator: 'NE', value1: 'S'}
+			]
+		}"
+		search="_handleValueHelpSearch" >
+		<columns>
+			<Column>
+				<header>
+					<Text text="Numero"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Loja"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Data"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Vendedor"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Nome"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Valor"/>
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<ObjectIdentifier
+						title="{Numero}" />
+				<Text text="{Loja}"	/>		
+				<Text text="{
+						path:'Data',
+						type: 'sap.ui.model.odata.type.Date',
+						formatOptions: {
+							pattern: 'dd.MM.yyyy',
+							style:'short' 
+						}
+					}" />
+				<Text text="{Vendedor}"	/>
+				<Text text="{Vendedores/Nome}" wrapping="false"	/>
+				<ObjectNumber textAlign="End" number="{
+						path: 'ValorVenda',
+						type: 'sap.ui.model.odata.type.Single',
+						formatOptions: {
+							decimals: 2,
+							decimalSeparator: ',',
+							groupingEnabled: true,
+							groupingSeparator: '.'
+						}
+					}"/>
+			</cells>
+		</ColumnListItem>
+		
+	</TableSelectDialog>
+</core:FragmentDefinition>

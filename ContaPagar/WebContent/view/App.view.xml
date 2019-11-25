@@ -1,0 +1,191 @@
+ <mvc:View controllerName="ContaPagar.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="true"
+						rows="{
+							path: '/ContaPagar',
+							sorter:{ path: 'RowId', descending: true }
+						}">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Contas Pagar"/>
+								<ToolbarSpacer/>
+								<Button text="Pagamento"  icon="sap-icon://batch-payments" press="pagamento" />
+								<SearchField placeholder="Pesquisar Fornecedor" width="30%" search="filter"/>
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							<t:Column width="8em" sortProperty="Duplicata" filterProperty="Duplicata">
+								<Label text="Numero"/>
+								<t:template>
+									<Text text="{Duplicata}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="DataEmissao"  width="8em">
+								<Label text="Emissao"/>
+								<t:template>
+									<Text text="{
+											path: 'DataEmissao',
+											type: 'sap.ui.model.odata.type.Date',
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="DataVencimento"  width="8em">
+								<Label text="Vencimento"/>
+								<t:template>
+									<Text text="{
+											path: 'DataVencimento',
+											type: 'sap.ui.model.odata.type.Date',
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Fornecedor"  width="8em">
+								<Label text="Fornecedor"/>
+								<t:template>
+									<Text text="{Fornecedor}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Fornecedores/RazaoSocial"  width="20em">
+								<Label text="Razao Social"/>
+								<t:template>
+									<Text text="{Fornecedores/RazaoSocial}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="ValorDuplicata" hAlign="End" width="8em">
+								<Label text="Valor"/>
+								<t:template>
+									<Text text="{
+										path: 'ValorDuplicata',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Juros" hAlign="End"  width="8em">
+								<Label text="Juros"/>
+								<t:template>
+									<Text text="{
+										path: 'Juros',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+							
+							
+							<t:Column sortProperty="Desconto" hAlign="End"  width="8em">
+								<Label text="Desconto"/>
+								<t:template>
+									<Text text="{
+										path: 'Desconto',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="ValorPago" hAlign="End"  width="8em">
+								<Label text="Valor Pago"/>
+								<t:template>
+									<Text text="{
+										path: 'ValorPago',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="DataPagamento"  width="8em">
+								<Label text="Data Pagamento"/>
+								<t:template>
+									<Text text="{
+											path: 'DataPagamento',
+											type: 'sap.ui.model.odata.type.Date',
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="NumeroCheque"  width="5em">
+								<Label text="CHQ"/>
+								<t:template>
+									<Text text="{NumeroCheque}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="CodigoConta"  width="5em">
+								<Label text="C/C"/>
+								<t:template>
+									<Text text="{CodigoConta}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Historico"  width="15em" >
+								<Label text="Historico"/>
+								<t:template>
+									<Text text="{Historico}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Incluir" icon="sap-icon://add" press="add"/>
+						<Button text="Alterar" icon="sap-icon://edit" press="edit"/>
+						<Button text="Excluir" icon="sap-icon://delete" press="detele"/>
+						<ToolbarSeparator/>
+						<Button text="Atualizar" icon="sap-icon://refresh" press="refresh"/>
+					</Toolbar>
+				</footer>
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

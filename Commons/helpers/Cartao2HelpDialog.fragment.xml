@@ -1,0 +1,29 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		title="Cartao de Credito"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{
+			path: '/Operadoras'
+		}"
+		search="_handleValueHelpSearch"
+		confirm="_handleValueHelpClose"
+		cancel="_handleValueHelpClose">
+		<columns>
+			<Column>
+				<header>
+					<Text text="Cartao de Credito"/>
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<ObjectIdentifier
+						title="{RowId} {Descricao}"
+						text="{RowId}"/>
+			</cells>
+		</ColumnListItem>
+		
+	</TableSelectDialog>
+</core:FragmentDefinition>

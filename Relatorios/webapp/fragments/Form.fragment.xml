@@ -1,0 +1,50 @@
+<core:FragmentDefinition
+   	xmlns="sap.m"
+   	xmlns:core="sap.ui.core">
+   	
+        <SimpleForm xmlns="sap.ui.layout.form"
+					id="form"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="3"
+					columnsL="2"
+					columnsM="2"
+					singleContainerFullSize="true"
+                    title="{view>/titulo}">
+					<content>
+                        <Title xmlns="sap.ui.core" text="Dados do Relatorio"/>
+                        <Label xmlns="sap.m" text="Codigo" />
+                        <Input xmlns="sap.m" value="{Codigo}" required="true" editable="{view>/codigoEdit}" width="100px" />
+
+                        <Label xmlns="sap.m" text="Nome" />
+                        <Input xmlns="sap.m" value="{Nome}" required="true" />
+
+                        <Label xmlns="sap.m" text="Descricao" />
+                        <Input xmlns="sap.m" value="{Descricao}" required="true" />
+
+                        <Label xmlns="sap.m" text="Modulo" />
+                        <Input xmlns="sap.m" value="{Modulo}" />
+
+                        <Label xmlns="sap.m" text="Link" />
+                        <Input xmlns="sap.m" value="{Link}" required="true" />
+
+
+                        <Label xmlns="sap.m" text="Executar" />
+                        <Input xmlns="sap.m" value="{Executar}" required="false" 
+                            tooltip="Funcao javascript a ser invocada antes da exibição do relatorio" 
+                        />
+
+                        <Title xmlns="sap.ui.core" />
+                    </content>
+            </SimpleForm>        
+            
+</core:FragmentDefinition>

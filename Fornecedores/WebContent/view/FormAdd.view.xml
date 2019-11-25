@@ -1,0 +1,127 @@
+ <mvc:View controllerName="Fornecedores.controller.FormAdd"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="form"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Incluir Fornecedor"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text="Dados do Fornecedor"/> 
+					<Label text="Codigo" labelFor="codigo"/>
+					<MaskInput mask="9999" id="codigo" value="{Codigo}"  required="true" />
+					
+					<Label text="Razão Social" labelFor="razaoSocial"/>
+					<Input id="razaoSocial" value="{RazaoSocial}" required="true"/>
+					
+					<Label text="Inscrição" labelFor="inscricao"/>
+					<Input id="inscricao" value="{Inscricao}"/>
+					
+					<Label text="CNPJ" labelFor="cnpj"/>
+					<MaskInput mask="99.999.999/9999-99" id="cnpj" value="{Cnpj}"/>
+					
+					<Label text="Endereço" labelFor="endereco"/>
+					<Input id="endereco" value="{Endereco}"/>
+					
+					<Label text="Bairro" labelFor="bairro"/>
+					<Input id="bairro" value="{Bairro}" />
+						
+					
+					<Label text="Cidade" labelFor="cidade"/>
+					<Input id="cidade" value="{Cidade}" />
+						
+				
+					<Label text="UF" labelFor="uf"/>
+					<MaskInput mask="~~" id="uf" value="{Estado}">
+						<rules>
+							<MaskInputRule maskFormatSymbol = "~" regex = "[A-Z]"/>
+						</rules>
+					</MaskInput>
+					
+					<Label text="CEP" labelFor="cep"/>
+					<MaskInput mask="99999999" id="cep" value="{Cep}" />
+					
+					<Label text="Telefone" labelFor="telefone"/>
+					<Input id="telefone" value="{Telefone}" />
+					
+					<Label text="Fax" labelFor="fax"/>
+					<Input id="fax" value="{Fax}" />
+					
+					<Label text="Data do cadastro" labelFor="dataCadastro"/>
+					<DatePicker id="dataCadastro" dateValue="{DataCadastro}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" editable="false" />
+					
+					<core:Title text="Dados - Representante"/>
+					<Label text="Nome" labelFor="nomeRepresentante"/>
+					<Input id="nomeRepresentante" value="{NomeRep}"/>
+					
+					<Label text="Endereço" labelFor="enderecoRepresentante"/>
+					<Input id="enderecoRepresentante" value="{EnderecoRep}"/>
+					
+					<Label text="Bairro" labelFor="bairroRepresentante"/>
+					<Input id="bairroRepresentante" value="{BairroRep}" />
+					
+					
+					<Label text="Cidade" labelFor="cidadeRepresentante"/>
+					<Input id="cidadeRepresentante" value="{CidadeRep}" />
+						
+					
+					<Label text="UF" labelFor="ufRepresentante"/>
+					<MaskInput mask="~~" id="ufRepresentante" value="{EstadoRep}">
+						<rules>
+							<MaskInputRule maskFormatSymbol = "~" regex = "[A-Z]"/>
+						</rules>
+						
+					</MaskInput>
+					
+					<Label text="CEP" labelFor="cepRepresentante"/>
+					<MaskInput mask="99999999" id="cepRepresentante" value="{CepRep}" />
+					
+					<Label text="Telefone" labelFor="telefoneRepresentante"/>
+					<Input id="telefoneRepresentante" value="{TelefoneRep}" />
+					
+					<Label text="Fax" labelFor="faxRepresentante"/>
+					<Input id="faxRepresentante" value="{FaxRep}" />
+					
+					<core:Title text="Inf. Adicionais"/>
+					<Label text="Condição comercial" labelFor="condicaoComercial"/>
+					<Input id="condicaoComercial" value="{CondicaoComercial}"/>
+					
+					<Label text="Desconto comercial" labelFor="descontoComercial"/>
+					<Input id="descontoComercial" value="{DescontoComercial}"/>
+					
+					<Label text="Observações" labelFor="observacao1"/>
+					<Input id="observacao1" value="{Observacao1}" />
+					<Label text=" " labelFor="observacao2"/>
+					<Input id="observacao2" value="{Observacao2}" />
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save"   press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

@@ -1,0 +1,145 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "MovimentoEstoque",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "MovimentoEstoque",
+		"description": "Cadastro de MovimentoEstoque",
+		"dataSources": {
+			"default":{
+				"uri": "/idx/odata/service.svc/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		}
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"fullWidth": true
+	},
+
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "MovimentoEstoque.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"handleValidation": true,
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "MovimentoEstoque.i18n.i18n"
+				}
+			},
+			"":{
+				"dataSource": "default",
+				"preload": true,
+				"settings": {
+					"earlyRequests": true,
+					"operationMode": "Server",
+					"synchronizationMode": "None",
+					"updateGroupId" : "updGroup",
+					"autoExpandSelect": true
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "MovimentoEstoque.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true,
+				"transition": "slide"
+			},
+			"routes": [{
+				"name": "RouteApp",
+				"pattern": "",
+				"target": "TargetApp"
+			},{
+				"name": "SaldoInicial",
+				"pattern": "SaldoInicial",
+				"target": "SaldoInicial"
+			},{
+				"name": "AcertoMaior",
+				"pattern": "AcertoMaior",
+				"target": "AcertoMaior"
+			},{
+				"name": "AcertoMenor",
+				"pattern": "AcertoMenor",
+				"target": "AcertoMenor"
+			},{
+				"name": "Transferencia",
+				"pattern": "Transferencia",
+				"target": "Transferencia"
+			}],
+			"targets": {
+				"TargetApp": {
+					"viewType": "XML",
+					"viewLevel": 1,
+					"viewName": "App"
+				},
+				"SaldoInicial": {
+					"viewType": "XML",
+					"viewLevel": 2,
+					"viewName": "SaldoInicial"
+				},
+				"AcertoMaior": {
+					"viewType": "XML",
+					"viewLevel": 2,
+					"viewName": "AcertoMaior"
+				},
+				"AcertoMenor": {
+					"viewType": "XML",
+					"viewLevel": 2,
+					"viewName": "AcertoMenor"
+				},
+				"Transferencia": {
+					"viewType": "XML",
+					"viewLevel": 2,
+					"viewName": "Transferencia"
+				}
+			}
+		}
+	}
+}

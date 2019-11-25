@@ -1,0 +1,99 @@
+ <mvc:View controllerName="Agenda.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="true"
+						rows="{
+							path: '/Agenda',
+							parameters:{
+								$count: true
+							}
+						}">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Agenda de Contatos"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://add" text="Incluir" press=".onCreate" />
+								<Button icon="sap-icon://less" text="Remover" press=".onDelete" />	
+								<SearchField placeholder="Pesquisar Nome" width="30%" search="filter"/>									
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							
+							<t:Column width="20em" sortProperty="Nome">
+								<Label text="Nome"/>
+								<t:template>
+									<Input value="{Nome}" />
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="10em">
+								<Label text="Telefone"/>
+								<t:template>
+									<Input value="{Telefone}" /> 
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="15em">
+								<Label text="Email"/>
+								<t:template>
+									<Input value="{Email}" /> 
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="20em">
+								<Label text="Endereco"/>
+								<t:template>
+									<Input value="{Endereco}" /> 
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="10em">
+								<Label text="Bairro"/>
+								<t:template>
+									<Input value="{Bairro}" /> 
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="10em">
+								<Label text="Cidade"/>
+								<t:template>
+									<Input value="{Cidade}" /> 
+								</t:template>
+							</t:Column>
+							
+							
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button
+							type="Emphasized"
+							text="Salvar"
+							icon="sap-icon://save"
+							press=".onSave"/>
+						<Button
+							id="doneButton"
+							text="Cancelar"
+							press=".onResetChanges"/>
+					</Toolbar>
+				</footer>
+					
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

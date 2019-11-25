@@ -1,0 +1,125 @@
+ <mvc:View controllerName="Funcionarios.controller.FormAdd"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="form"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Incluir Funcionario"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text="Dados Cadastrais"/> 
+					<Label text="Código" labelFor="codigo"/>
+					<Input id="codigo" value="{Codigo}" required="true">
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L2 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					<Label text="Nome" labelFor="nome"/>
+					<Input id="nome" value="{Nome}" required="true"/>
+					
+					<Label text="Loja" labelFor="loja"/>
+					<Input required="true"
+						showValueHelp="true"
+						valueHelpRequest="handleSearchLoja"
+						id="loja"
+						value="{Loja}"
+						change="lojaOnChange">
+						
+					</Input>
+					<Input id="nomeLoja" editable="false"/>
+					
+					<Label text="Data do cadastro" labelFor="dataCadastro"/>
+					<DatePicker id="dataCadastro" dateValue="{DataAdmissao}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="40%"/>
+					
+					<Label text="RG" labelFor="rg"/>
+					<Input id="rg" value="{Rg}"/>
+					
+					<Label text="CPF" labelFor="cpf"/>
+					<Input id="cpf" value="{Cpf}"/>
+					
+					<Label text="Data de Nasc." labelFor="dataNasc"/>
+					<DatePicker id="dataNasc" dateValue="{DataNascimento}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="40%"/>
+						
+					<Label text="Número CTPS" labelFor="numeroCtps"/>
+					<Input id="numeroCtps" value="{Ctps}"/>
+					
+					<Label text="Salário" labelFor="salario"/>
+					<Input id="salario" textAlign="End"
+						value="{
+							path: 'Salario',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}" width="30%"/>
+					
+					<core:Title text="Endereço"/>
+					<Label text="Endereço" labelFor="endereco"/>
+					<Input id="endereco" value="{Endereco}"/>
+					
+					<Label text="Bairro" labelFor="bairro"/>
+					<Input id="bairro" value="{Bairro}">
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L4 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					<Label text="Cidade" labelFor="cidade"/>
+					<Input id="cidade" value="{Cidade}">
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L4 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					<Label text="UF" labelFor="uf"/>
+					<MaskInput mask="~~" id="uf" value="{Estado}">
+						<rules>
+							<MaskInputRule maskFormatSymbol = "~" regex = "[A-Z]"/>
+						</rules>
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L1 M3 S4" />
+						</layoutData>
+					</MaskInput>
+					
+					<Label text="CEP" labelFor="cep"/>
+					<MaskInput mask="99999999" id="cep" value="{Cep}" width="30%"/>
+					
+					<Label text="Telefone" labelFor="telefone"/>
+					<Input id="telefone" value="{Telefone}" width="30%"/>
+				</f:content>	
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save"   press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

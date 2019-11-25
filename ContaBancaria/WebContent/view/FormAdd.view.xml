@@ -1,0 +1,90 @@
+ <mvc:View controllerName="ContaBancaria.controller.FormAdd"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="form"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Incluir Conta Bancaria"
+				singleContainerFullSize="true">
+				<f:content>
+					<Title xmlns="sap.ui.core" text="Dados da Conta" level="H2"  />
+					
+					<Label text="Codigo" labelFor="codigo"/>
+					<Input id="codigo" value="{Codigo}" required="true" />
+					
+					<Label text="Loja" labelFor="loja"/>
+					<Input required="true"
+						showValueHelp="true"
+						id="loja"
+						selectedKey="{Loja}"
+						textFormatMode="KeyValue"
+						showSuggestion="true"
+						suggestionItems="{/Lojas}"
+						suggest="handleSuggestLoja"
+						valueHelpRequest="handleSearchLoja"
+						valueHelpOnly="true" >
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}"/>
+						</suggestionItems>
+					</Input>
+					
+					<Label text="Banco" labelFor="banco"/>
+					<Input id="banco" value="{NomeBanco}" required="true" /> 
+					
+					<Label text="Conta" labelFor="conta"/>
+					<Input id="conta" value="{Conta}" required="true"/>
+					
+					<Label text="Descrição" labelFor="descricao"/>
+					<Input id="descricao" value="{Descricao}"/>
+					
+					<Label text="Saldo" labelFor="saldo"/>
+					<Input id="saldo"
+						textAlign="End" editable="false"
+						value="{
+							path: 'Saldo',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+					<Label text="Último lançamento" labelFor="dataUltimoLancamento"/>
+					<DatePicker id="dataUltimoLancamento" dateValue="{UltimoLancamento}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" editable="false"/>
+						
+					<Title xmlns="sap.ui.core" text=" " />
+					
+				</f:content>	
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save"   press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

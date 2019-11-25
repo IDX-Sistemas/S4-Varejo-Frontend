@@ -1,0 +1,168 @@
+ <mvc:View controllerName="ContaCorrente.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="false" >
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Lancamento Conta Corrente"/>
+								<ToolbarSpacer/>
+								
+								<Label text="Conta" />
+								<Input required="true" 
+									showValueHelp="true"
+									textFormatMode="KeyValue"
+									selectedKey="{model>/Conta}"
+									showSuggestion="true"
+									suggestionItems="{/ContaBancaria}"
+									suggest="handleSuggestContaBancaria"
+									startSuggestion="2"
+									width="25%"
+									valueHelpRequest="handleSearchContaBancaria"
+									valueHelpOnly="true" >
+									<suggestionItems>
+										<ListItem xmlns="sap.ui.core" key="{Codigo}" text="{Conta}"/>
+									</suggestionItems>
+								</Input>
+								
+								<Label text="Database" />
+								<DatePicker id="emissao" dateValue="{model>/Data}"
+									displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="15%"/>
+									
+								<Button text="Listar" type="Emphasized" icon="sap-icon://action" press="bindRows"/>
+								<Button icon="sap-icon://add" press=".onCreate" />
+								<Button icon="sap-icon://less" press=".onDelete" />											
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							
+							<t:Column sortProperty="Data" width="10em">
+								<Label text="Data"/>
+								<t:template>
+									<Text text="{
+											path: 'Data',
+											type: 'sap.ui.model.odata.type.Date',
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}
+										}" /> 
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="5em">
+								<Label text="Conta"/>
+								<t:template>
+									<Text text="{CodigoConta}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							
+							<t:Column >
+								<Label text="Historico" required="true"/>
+								<t:template>
+									<Input value="{Historico}"  width="100%"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="5em" >
+								<Label text="D/C"/>
+								<t:template>
+									<!-- <Text text="{DebitoCredito}"/> -->
+									<Select selectedKey="{DebitoCredito}" forceSelection="false">
+										<ListItem xmlns="sap.ui.core"  key="C" text="C"/>
+										<ListItem xmlns="sap.ui.core"  key="D" text="D"/>
+										<ListItem xmlns="sap.ui.core"  key="R" text="R"/>
+										<ListItem xmlns="sap.ui.core"  key="B" text="B"/>
+									</Select>
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="6em" >
+								<Label text="Cheque"/>
+								<t:template>
+									<Input value="{Cheque}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="6em" >
+								<Label text="Fornecedor"/>
+								<t:template>
+									<Input required="true" id="Fornecedor"
+										showValueHelp="true"
+										textFormatMode="Key"
+										value="{CodigoFornecedor}"
+										suggest="handleSuggestFornecedor"
+										showSuggestion="true"
+										suggestionItems="{
+											path: '/Fornecedores',
+											templateShareable:true
+										}"
+										valueHelpRequest="handleSearchFornecedor"
+										valueHelpOnly="true" >
+										<suggestionItems>
+											<ListItem xmlns="sap.ui.core" key="{Codigo}" text="{RazaoSocial}" additionalText="{Codigo}" />
+										</suggestionItems>
+									</Input>
+								</t:template>
+							</t:Column>
+
+							<t:Column width="8em" >
+								<Label text="Duplicata"/>
+								<t:template>
+									<Input showValueHelp="true"
+										valueHelpRequest="handleSearchDuplicata"
+										value="{NumeroDuplicata}"/>
+								</t:template>
+							</t:Column>
+
+							<t:Column sortProperty="Valor" hAlign="End" width="10em">
+								<Label text="Valor"/>
+								<t:template>
+									<Input textAlign="End" value="{
+										path: 'Valor',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+							
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button
+							type="Emphasized"
+							text="Salvar"
+							icon="sap-icon://save"
+							press=".onSave"/>
+						<Button
+							id="doneButton"
+							text="Cancelar"
+							press=".onResetChanges"/>
+					</Toolbar>
+				</footer>
+					
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

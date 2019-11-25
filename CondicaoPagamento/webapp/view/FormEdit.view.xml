@@ -1,0 +1,63 @@
+ <mvc:View controllerName="CondicaoPagamento.controller.FormEdit"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="formMov"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Editar Condicao de Pagamento"
+				singleContainerFullSize="true">
+				<f:content>
+					<Title xmlns="sap.ui.core" text="Dados da Condicao de Pagamento"/> 
+					
+					<Label text="Codigo"/>
+					<Input value="{Codigo}" width="50%" required="true" editable="false"/>
+
+					<Label text="Descricao"/>
+					<Input value="{Descricao}" required="true" />
+					
+					<Label text="Intervalo Parcelas"/>
+					<Input value="{Intervalo}" width="50%" required="true" textAlign="End"/>
+
+					<Label text="Quantidade Parcelas"/>
+					<Input value="{Parcelas}" width="50%" required="true" textAlign="End"/>
+
+					<Label text="Com Entrada"/>
+					<Select selectedKey="{ComEntrada}" forceSelection="false" width="50%">
+						<ListItem xmlns="sap.ui.core" key="N" text="NAO" />
+						<ListItem xmlns="sap.ui.core" key="S" text="SIM" />
+					</Select>
+					
+					<Title xmlns="sap.ui.core" text=" "/> 
+				</f:content>	
+			</f:SimpleForm>
+			
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save" press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		title="Fornecedores"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{
+			path: '/Fornecedores',
+			sorter:{
+				path: 'Codigo'
+			}
+		}"
+		search="_handleValueHelpSearch">
+		<columns>
+			<Column>
+                <header>
+					<Text text="Codigo"/>
+				</header>
+				<header>
+					<Text text="Fornecedor"/>
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<ObjectIdentifier title="{Codigo}" />
+                <Text text="{RazaoSocial}" />
+			</cells>
+		</ColumnListItem>
+		
+	</TableSelectDialog>
+</core:FragmentDefinition>

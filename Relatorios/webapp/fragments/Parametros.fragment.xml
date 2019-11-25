@@ -1,0 +1,12 @@
+<core:FragmentDefinition
+   	xmlns="sap.m"
+   	xmlns:core="sap.ui.core">
+   	<Dialog id="parametros" title="{view>/titulo}" class="sapUiSizeCompact sapUiContentPadding">
+        
+   		<buttons>
+   			<Button text="Confirmar" press=".callReport" type="Accept" />
+			<Button text="Fechar" press=".closeDialog"/>
+   		</buttons>
+
+    </Dialog>
+</core:FragmentDefinition>

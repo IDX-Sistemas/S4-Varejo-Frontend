@@ -1,0 +1,78 @@
+ <mvc:View controllerName="Relatorios.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<Table id="table"
+                        class="sapUiSizeCondensed"
+						alternateRowColors="true"
+						inset="false"
+						mode="SingleSelectMaster"
+                        items="{
+							path: '/Relatorios'
+						}" >
+						
+                        <headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title text="Relatorios" level="H2"/>
+									<ToolbarSpacer />
+                                    <MenuButton text="Acoes Relacionadas" icon="sap-icon://action">
+                                        <menu>
+                                            <Menu>
+                                                <items>
+                                                    <MenuItem text="Incluir" press=".add" />
+                                                    <MenuItem text="Editar" press=".edit"/>
+                                                    <MenuItem text="Remover" press=".delete"/>
+                                                </items>
+                                            </Menu>
+                                        </menu>
+								    </MenuButton>
+									<SearchField id="searchField" placeholder="Filtrar Nome..." width="30%" search="filter"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+
+                        <columns>
+							<Column width="20rem">
+								<Text text="Codigo" />
+                            </Column>
+							<Column>
+                                <Text text="Nome" />
+                            </Column>
+                            <Column>
+                                <Text text="Descricao" />
+                            </Column>
+                            <Column>
+                                <Text text="Modulo" />
+                            </Column>
+                      	</columns>
+                        
+                        <items>
+							<ColumnListItem >
+								<cells>
+									<ObjectIdentifier title="{Codigo}"/>
+								    <Text text="{Nome}" />
+                                    <Text text="{Descricao}" />
+                                    <Text text="{Modulo}" />
+                               </cells>
+							</ColumnListItem>
+						</items>
+
+					</Table>
+				</content>
+				
+                <footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Imprimir" icon="sap-icon://print" press=".parametros" type="Emphasized" />
+					</Toolbar>
+				</footer>
+			
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

@@ -1,0 +1,118 @@
+ <mvc:View controllerName="Cheques.controller.FormAdd"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="form"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Incluir Cheque Recebido"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text="Dados do Cheque"/> 
+					
+					<Label text="Data" />
+					<DatePicker dateValue="{Data}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="50%" />
+						
+					<Label text="Loja" labelFor="loja"/>
+					<Input required="true"
+						showValueHelp="true"
+						id="loja"
+						textFormatMode="KeyValue"
+						selectedKey="{Loja}"
+						showSuggestion="true"
+						suggestionItems="{/Lojas}"
+						suggest="handleSuggestLoja"
+						valueHelpRequest="handleSearchLoja"
+						valueHelpOnly="true" width="50%">
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}"/>
+						</suggestionItems>
+		
+					</Input>
+					
+					<Label text="Banco"  />
+					<Input value="{Banco}" required="true"  width="50%"/>
+					
+					<Label text="Agencia"  />
+					<Input value="{Agencia}" required="true"  width="50%"/>
+					
+					<Label text="Conta"  />
+					<Input value="{Conta}" required="true"  width="50%"/>
+					
+					<Label text="Numero"  />
+					<Input value="{Numero}" required="true"  width="50%"/>
+					
+					
+					<Label text="Etapa"  />
+					<Input value="{Etapa}" required="true"  width="50%"/>
+					
+					
+					<Label text="Valor"  />
+					<Input textAlign="End"
+						value="{
+							path: 'Valor',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+			          			groupingSeparator: '.'
+							}
+						}" width="50%" />
+						
+					
+					<Label text="Vencimento" />
+					<DatePicker dateValue="{Vencimento}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="50%" />
+						
+					
+					<Label text="Cliente" />
+					<Input required="true"
+						showValueHelp="true"
+						textFormatMode="KeyValue"
+						selectedKey="{Cliente}"
+						showSuggestion="true"
+						suggestionItems="{/Clientes}"
+						suggest="handleSuggestCliente"
+						startSuggestion="2"
+						valueHelpRequest="handleSearchCliente"
+						valueHelpOnly="true" >
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}" />
+						</suggestionItems>
+					</Input>
+					
+					
+					<core:Title text=" "/>
+					
+				</f:content>	
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save"   press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

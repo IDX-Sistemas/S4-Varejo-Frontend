@@ -1,0 +1,124 @@
+ <mvc:View controllerName="EntradaAntecipada.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="true"
+						rows="{
+							path: '/EntradaAntecipada',
+							sorter: {
+								path: 'RowId', descending: true
+							}
+							
+						}">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Entrada Antecipada"/>
+								<ToolbarSpacer/>
+								<MenuButton text="Acoes Relacionadas" icon="sap-icon://action">
+									<menu>
+										<Menu>
+											<items>
+												<MenuItem text="Imprimir Etiqueta" icon="sap-icon://print" press=".printEtq" />
+												<MenuItem text="Estornar Lancamento" icon="sap-icon://eraser" press=".delete" startsSection="true"/>
+											</items>
+										</Menu>
+									</menu>
+								</MenuButton>
+								<SearchField placeholder="Pesquisar Descricao" width="30%" search="filter"/>
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							<t:Column width="8em" sortProperty="DataEntrada">
+								<Label text="Data Entrada"/>
+								<t:template>
+									<Text text="{
+											path: 'DataEntrada',
+											type: 'sap.ui.model.odata.type.Date',
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}
+										}" />
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="NotaFiscal" width="10em">
+								<Label text="Nota Fiscal"/>
+								<t:template>
+									<Text text="{NotaFiscal}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Fornecedor" width="10em">
+								<Label text="Fornecedor"/>
+								<t:template>
+									<Text text="{Fornecedor}" />
+								</t:template>
+							</t:Column>
+							
+							
+							<t:Column sortProperty="Fornecedores/RazaoSocial" >
+								<Label text="Razao Social"/>
+								<t:template>
+									<Text text="{Fornecedores/RazaoSocial}"  wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Produto" width="10em">
+								<Label text="Produto"/>
+								<t:template>
+									<Text text="{Produto}"/>
+								</t:template>
+							</t:Column>
+							
+							
+							<t:Column sortProperty="Produtos/Descricao" width="15em">
+								<Label text="Descricao"/>
+								<t:template>
+									<Text text="{Produtos/Descricao}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Loja" width="5em">
+								<Label text="Loja"/>
+								<t:template>
+									<Text text="{Loja}"/>
+								</t:template>
+							</t:Column>
+							
+							
+							<t:Column sortProperty="Quantidade" hAlign="End" width="8em">
+								<Label text="Quantidade"/>
+								<t:template>
+									<Text text="{Quantidade}"/>
+								</t:template>
+							</t:Column>
+							
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Incluir" icon="sap-icon://add" press="add" type="Emphasized"/>
+						<ToolbarSeparator/>
+						<Button text="Atualizar" icon="sap-icon://refresh" press="refresh"/>
+					</Toolbar>
+				</footer>
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

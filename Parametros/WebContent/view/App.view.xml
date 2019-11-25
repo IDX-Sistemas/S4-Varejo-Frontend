@@ -1,0 +1,77 @@
+ <mvc:View controllerName="Parametros.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="true"
+						rows="{
+							path: '/Parametros',
+							parameters:{
+								$count: true
+							}
+						}">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Parametros"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://add" text="Incluir" press=".onCreate" />
+								<Button icon="sap-icon://less" text="Remover" press=".onDelete" />	
+								<SearchField placeholder="Pesquisar Variavel" width="30%" search="filter"/>									
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							
+							<t:Column sortProperty="Variavel" width="15em">
+								<Label text="Variavel"/>
+								<t:template>
+									<Input value="{Variavel}" />
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="10em">
+								<Label text="Valor"/>
+								<t:template>
+									<Input value="{Valor}" /> 
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Nome" filterProperty="Nome">
+								<Label text="Descricao"/>
+								<t:template>
+									<Input value="{Nome}" />
+								</t:template>
+							</t:Column>
+							
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button
+							type="Emphasized"
+							text="Salvar"
+							icon="sap-icon://save"
+							press=".onSave"/>
+						<Button
+							id="doneButton"
+							text="Cancelar"
+							press=".onResetChanges"/>
+					</Toolbar>
+				</footer>
+					
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

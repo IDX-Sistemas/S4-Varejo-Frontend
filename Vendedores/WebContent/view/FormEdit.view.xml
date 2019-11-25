@@ -1,0 +1,198 @@
+ <mvc:View controllerName="Vendedores.controller.FormEdit"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="formMov"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Alterar Vendedor"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text="Dados do Vendedor"/> 
+					<Label text="Codigo" labelFor="codigo"/>
+					<Input id="codigo" value="{Codigo}" required="true" editable="false" width="50%"/>
+					
+					<Label text="Nome" labelFor="nome"/>
+					<Input id="nome" value="{Nome}" required="true"/> 
+					
+					<Label text="Loja" labelFor="loja"/>
+					<Input required="true"
+						showValueHelp="true"
+						id="loja"
+						textFormatMode="KeyValue"
+						selectedKey="{Loja}"
+						showSuggestion="true"
+						suggestionItems="{/Lojas}"
+						suggest="handleSuggestLoja"
+						valueHelpRequest="handleSearchLoja"
+						valueHelpOnly="true" width="50%">
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}"/>
+						</suggestionItems>
+		
+					</Input>
+					
+					<Label text="Data do cadastro" labelFor="dataCadastro"/>
+					<DatePicker id="dataCadastro" dateValue="{DataCadastro}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="50%"/>
+						
+					<Label text="Comissão" labelFor="comissao"/>
+					<Input id="comissao" textAlign="End"
+						value="{
+							path: 'Comissao',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ','
+							}
+						}" width="50%"  />
+						
+					<Label text="Adiantamento" labelFor="adiantamento"/>
+					<Input id="adiantamento" textAlign="End"
+						value="{
+							path: 'Adiantamento',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}" width="50%"/>
+						
+					<Label text="Cota de venda" labelFor="cota"/>
+					<Input id="cota" textAlign="End"
+						value="{
+							path: 'CotaVenda',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ','
+							}
+						}" width="50%"/>
+						
+					<Label text="Valor fixo" labelFor="valorFixo"/>
+					<Input id="valorFixo" textAlign="End"
+						value="{
+							path: 'ValorFixo',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}" width="50%"/>
+						
+					<Label text="Valor à prazo" labelFor="valorPrazo"/>
+					<Input id="valorPrazo" textAlign="End"
+						value="{
+							path: 'ValorPrazo',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ','
+							}
+						}" width="50%"/>
+					
+					<Label text="Valor à vista" labelFor="valorVista"/>
+					<Input id="valorVista" textAlign="End"
+						value="{
+							path: 'ValorVista',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}" width="50%"/>
+						
+						
+					<core:Title text=" "/>	
+					<!-- <Label text="Seção 1" labelFor="secao1"/>
+					<Input showValueHelp="true"
+						valueHelpRequest="handleSearchSecao"
+						id="secao1"
+						value="{Secao1}"
+						change="secaoOnChange">
+						
+					</Input>
+					
+					<Label text="Seção 2" labelFor="secao2"/>
+					<Input showValueHelp="true"
+						valueHelpRequest="handleSearchSecao"
+						id="secao2"
+						value="{Secao2}"
+						change="secaoOnChange">
+						
+					</Input>
+					
+					
+					<Label text="Seção 3" labelFor="secao3"/>
+					<Input showValueHelp="true"
+						valueHelpRequest="handleSearchSecao"
+						id="secao3"
+						value="{Secao3}"
+						change="secaoOnChange">
+						
+					</Input>
+					
+					
+					<Label text="Seção 4" labelFor="secao4"/>
+					<Input showValueHelp="true"
+						valueHelpRequest="handleSearchSecao"
+						id="secao4"
+						value="{Secao4}"
+						change="secaoOnChange">
+					</Input>
+					
+					
+					<Label text="Seção 5" labelFor="secao5"/>
+					<Input showValueHelp="true"
+						valueHelpRequest="handleSearchSecao"
+						id="secao5"
+						value="{Secao5}"
+						change="secaoOnChange">
+					</Input>
+					
+					
+					<Label text="Seção 6" labelFor="secao6"/>
+					<Input showValueHelp="true"
+						valueHelpRequest="handleSearchSecao"
+						id="secao6"
+						value="{Secao6}"
+						change="secaoOnChange">
+					</Input> -->
+					
+					
+				</f:content>	
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save"   press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

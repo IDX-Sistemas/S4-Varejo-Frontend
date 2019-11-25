@@ -1,0 +1,226 @@
+ <mvc:View controllerName="Clientes.controller.FormEdit"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="formMov"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Alterar Cliente"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text="Dados Cadastrais"/> 
+					<Label text="Codigo" labelFor="codigo"/>
+					<MaskInput mask="99999" id="codigo" value="{Codigo}" required="true" editable="false">
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L2 M3 S4" />
+						</layoutData>
+					</MaskInput>
+					
+					<Label text="Nome" labelFor="nome"/>
+					<Input id="nome" value="{Nome}" required="true"/> 
+					
+					<Label text="Loja" labelFor="loja"/>
+					<Input required="true"
+						showValueHelp="true"
+						valueHelpRequest="handleSearchLoja"
+						id="loja"
+						showSuggestion="true"
+						suggestionItems="{/Lojas}"
+						suggest="handleSuggestLoja"
+						textFormatMode="KeyValue"
+						valueHelpOnly="true"
+						selectedKey="{Loja}">
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}"/>
+						</suggestionItems>
+					</Input>
+									
+					<Label text="RG" labelFor="rg"/>
+					<MaskInput mask="99.999.999-9" id="rg" value="{Rg}"/>
+					
+					<Label text="CPF" labelFor="cpf"/>
+					<MaskInput mask="999.999.999-99" id="cpf" value="{Cpf}"/>
+					
+					
+					<Label text="Data de Nascimento" labelFor="dataNasc"/>
+					<DatePicker id="dataNasc" dateValue="{DataNascimento}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="35%"/>
+					
+					<Label text="Estado civil" labelFor="estadoCivil"/>
+					<Input id="estadoCivil" value="{EstadoCivil}" width="30%"/>
+					
+					<Label text="Cônjuge" labelFor="conjuge"/>
+					<Input id="conjuge" value="{Conjuge}"/>
+					
+					<Label text="Nº de filhos" labelFor="filhos"/>
+					<Input id="filhos" value="{QuantidadeFilhos}">
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L1 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					
+					<!--  ENDERECO / CONTATO -->
+					<core:Title text="Endereço/Contato"/>	
+					<Label text="Endereço" labelFor="endereco"/>
+					<Input id="endereco" value="{Endereco}"/>
+					
+					<Label text="Bairro" labelFor="bairro"/>
+					<Input id="bairro" value="{Bairro}">
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L4 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					<Label text="Cidade" labelFor="cidade"/>
+					<Input id="cidade" value="{Cidade}">
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L4 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					<Label text="UF" labelFor="uf"/>
+					<MaskInput mask="~~" id="uf" value="{Estado}">
+						<rules>
+							<MaskInputRule maskFormatSymbol = "~" regex = "[A-Z]"/>
+						</rules>
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L1 M3 S4" />
+						</layoutData>
+					</MaskInput>
+					
+					<Label text="CEP" labelFor="cep"/>
+					<MaskInput mask="99999999" id="cep" value="{Cep}" width="30%"/>
+					
+					<Label text="Telefone" labelFor="telefone"/>
+					<Input id="telefone" value="{Telefone}" width="30%"/>
+					
+					<Label text="E-mail" labelFor="email"/>
+					<Input id="email" value="{Email}"/>
+					
+					
+					<!--  DADOS PROFISSIONAIS -->
+					<core:Title text="Dados Profissionais"/>
+					<Label text="Empresa" labelFor="empresa"/>
+					<Input id="empresa" value="{Empresa}"/>
+					
+					<Label text="Atualização" labelFor="dataAtualizacao"/>
+					<DatePicker id="dataAtualizacao" dateValue="{DataAlteracao}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="35%"/>
+						
+					<Label text="Endereço" labelFor="enderecoEmpresa"/>
+					<Input id="enderecoEmpresa" value="{EnderecoEmpresa}"/>
+					
+					<Label text="Cidade" labelFor="cidadeEmpresa"/>
+					<Input id="cidadeEmpresa" value="{CidadeEmpresa}">
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L4 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					<Label text="Telefone" labelFor="telefoneEmpresa"/>
+					<Input id="telefoneEmpresa" value="{TelefoneEmpresa}">
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L4 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					<Label text="Cargo" labelFor="cargo"/>
+					<Input id="cargo" value="{CargoEmpresa}"/>
+					
+					<Label text="Salário" labelFor="salario"/>
+					<Input id="salario" textAlign="End" value="{
+							path: 'SalarioEmpresa',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}" width="30%"/>
+					
+					<!-- INFORMAÇÕES -->
+					<core:Title text="Informações"/>
+					<Label text="Última compra" labelFor="dataUltimaCompra"/>
+					<DatePicker id="dataUltimaCompra" dateValue="{DataUltimaCompra}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="35%"/>
+						
+					<Label text="Valor" labelFor="valor"/>
+					<Input id="valor" textAlign="End"
+						width="30%"
+						value="{
+							path: 'ValorUltimaCompra',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+					
+					<Label text="Data do cadastro" labelFor="dataCadastro"/>
+					<DatePicker id="dataCadastro" dateValue="{DataCadastro}"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="35%"/>
+						
+					<Label text="Crédito" labelFor="credito"/>
+					<Input id="credito" textAlign="End"
+						width="30%"
+						value="{
+							path: 'ValorCredito',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+					<Label text="Conceito" labelFor="conceito"/>
+					<Input id="conceito" value="{Conceito}" width="20%"/>
+					
+					<Label text="Tipo" labelFor="tipo"/>
+					<Input id="tipo" value="{TipoCliente}" width="12%"/>
+					
+					<Label text="1ª Carta" labelFor="carta1"/>
+					<Input id="carta1" value="{Carta1}" width="20%"/>
+					
+					<Label text="2ª Carta" labelFor="carta2"/>
+					<Input id="carta2" value="{Carta2}" width="20%"/>
+					
+					<Label text="Observações" labelFor="obs1"/>
+					<Input id="obs" value="{Observacao1}" />
+					<Label text=" " labelFor="obs2"/>
+					<Input id="obs2" value="{Observacao2}"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save"   press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

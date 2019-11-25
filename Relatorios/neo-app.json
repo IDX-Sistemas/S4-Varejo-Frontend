@@ -1,0 +1,13 @@
+{
+    "welcomeFile": "/webapp/index.html",
+    "routes": [
+        {
+            "path": "/",
+            "target": {
+                "type": "destination",
+                "name": "default",
+                "entryPath": "/"
+            }
+        }
+    ]
+}

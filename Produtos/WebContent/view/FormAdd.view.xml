@@ -1,0 +1,201 @@
+ <mvc:View controllerName="Produtos.controller.FormAdd"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="form"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Incluir Produto"
+				singleContainerFullSize="true">
+				<f:content>
+					<Title xmlns="sap.ui.core" text="Dados do Produto"/> 
+								
+					<Label text="Marca" />
+					<Input required="true"
+						showValueHelp="true"
+						valueHelpRequest="handleSearchMarca"
+						selectedKey="{model>/Marca}"
+						textFormatMode="KeyValue"
+						showSuggestion="true"
+						suggestionItems="{/Marcas}"
+						suggest="handleSuggestMarca"
+						valueHelpOnly="true">
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}"/>
+						</suggestionItems>
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L3 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					<Label text="Tipo"/>
+					<Input required="true"
+						showValueHelp="true"
+						valueHelpRequest="handleSearchTipo"
+						selectedKey="{model>/Tipo}"
+						textFormatMode="KeyValue"
+						showSuggestion="true"
+						suggestionItems="{/Tipos}"
+						suggest="handleSuggestTipo"
+						valueHelpOnly="true">
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}"/>
+						</suggestionItems>
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L3 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					
+					<Label text="Referencia"/>
+					<Input value="{
+								path: 'model>/Referencia',
+								type: 'sap.ui.model.type.String',
+								constraints:{
+									nullable : false, 
+									maxLength : 6
+								}
+							}" required="true">
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L3 M3 S4" />
+						</layoutData>
+					</Input>
+					
+					<Label text="Descrição" labelFor="descricao"/>
+					<Input id="descricao" value="{Descricao}" required="true"/>
+					
+					<Label text="Unidade" labelFor="unidade"/>
+					<Input id="unidade" value="{Unidade}"/>
+					
+					<Label text="Última compra" />
+					<DatePicker dateValue="{UltimaCompra}" editable="false"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="40%"/>
+						
+					
+					<Label text="Fornecedor"/>
+					<Input required="true"
+						showValueHelp="true"
+						valueHelpRequest="handleSearchFornecedor"
+						selectedKey="{Fornecedor}"
+						textFormatMode="KeyValue"
+						showSuggestion="true"
+						suggestionItems="{/Fornecedores}"
+						suggest="handleSuggestFornecedor"
+						valueHelpOnly="true">
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{RazaoSocial}" additionalText="{Codigo}"/>
+						</suggestionItems>
+					</Input>
+					
+				
+					<Label text="Status" labelFor="status"/>
+					<Select forceSelection="false" 
+							selectedKey="{Status}" >
+						<Item xmlns="sap.ui.core" key="A" text="A"/>
+						<Item xmlns="sap.ui.core" key="S" text="S"/>
+						<Item xmlns="sap.ui.core" key="E" text="E"/>
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L3 M3 S4" />
+						</layoutData>
+					</Select>	
+					
+					
+					<Label text="Desc.Etiqueta" />
+					<Input value="{DescricaoEtiqueta1}"/>
+					<Label text=" " />
+					<Input value="{DescricaoEtiqueta2}"/>
+					
+					<core:Title text=" "/>
+					<Label text="Secao"/>
+					<Input required="true"
+						showValueHelp="true"
+						valueHelpRequest="handleSearchSecao"
+						value="{Secao}"
+						valueHelpOnly="true" width="50%" />
+					
+					
+					<Label text="Preco de Venda" />
+					<Input width="50%" textAlign="End"
+						value="{
+							path: 'ValorVista',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ','
+							}
+						}"/>
+						
+					
+					<Label text="Preco de Custo" />
+					<Input textAlign="End"
+						width="50%"
+						value="{
+							path: 'ValorCusto',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ','
+							}
+						}"/>
+						
+					<Label text="Custo medio"  />
+					<Input width="50%" textAlign="End"
+						value="{
+							path: 'CustoMedio',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ','
+							}
+						}"/>
+						
+					<Label text="Vendas/Mês" />
+					<Input editable="true"  textAlign="End"
+						width="20%"
+						value="{path: 'VendaMes', type: 'sap.ui.model.odata.type.Int32'}"/>
+						
+					<Label text="Compras/Mês"/>
+					<Input editable="true" textAlign="End"
+						width="20%"
+						value="{path: 'CompraMes', type: 'sap.ui.model.odata.type.Int32'}"/>
+						
+					<Label text="Transf./Mês" />
+					<Input editable="true" textAlign="End"
+						width="20%"
+						value="{path: 'TransferenciaMes', type: 'sap.ui.model.odata.type.Int32'}"/>
+						
+					<Label text="Consumo med"/>
+					<Input editable="true" textAlign="End"
+						width="20%"
+						value="{path: 'ConsumoMedio', type: 'sap.ui.model.odata.type.Int32'}"/>
+				</f:content>	
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save"   press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

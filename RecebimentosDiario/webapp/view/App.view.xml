@@ -1,0 +1,148 @@
+ <mvc:View controllerName="RecebimentosDiario.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="false" >
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Recebimentos Diario"/>
+								<ToolbarSpacer/>
+								
+								<Label text="Loja" />
+								<Input required="true" 
+									showValueHelp="true"
+									textFormatMode="KeyValue"
+									selectedKey="{model>/Loja}"
+									showSuggestion="true"
+									suggestionItems="{/Lojas}"
+									suggest="handleSuggestLoja"
+									startSuggestion="2"
+									width="25%"
+									valueHelpRequest="handleSearchLoja"
+									valueHelpOnly="true" >
+									<suggestionItems>
+										<ListItem xmlns="sap.ui.core" key="{Codigo}" text="{Nome}"/>
+									</suggestionItems>
+								</Input>
+								
+								<Label text="Data" />
+								<DatePicker id="emissao" dateValue="{model>/Data}"
+									displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="15%"/>
+									
+								<Button text="Listar" type="Emphasized" icon="sap-icon://action" press="bindRows"/>										
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							
+							
+							<t:Column width="10em">
+								<Label text="Data"/>
+								<t:template>
+									<Text text="{
+											path: 'DataPagamento',
+											type: 'sap.ui.model.odata.type.Date',
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}
+										}" /> 
+								</t:template>
+							</t:Column>
+						
+							
+							<t:Column width="8em">
+								<Label text="Loja"/>
+								<t:template>
+									<Text text="{Loja}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="10em">
+								<Label text="Numero" required="true"/>
+								<t:template>
+									<Text text="{NumeroDuplicata}"  width="100%"/>
+								</t:template>
+							</t:Column>
+
+							<t:Column width="10em">
+								<Label text="Doc." required="true"/>
+								<t:template>
+									<Text text="{NumeroDocumento}"  width="100%"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column hAlign="End" >
+								<Label text="Juros"/>
+								<t:template>
+									<Text textAlign="End" text="{
+										path: 'ValorJuros',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+
+							<t:Column hAlign="End" >
+								<Label text="Desconto"/>
+								<t:template>
+									<Text textAlign="End" text="{
+										path: 'ValorDesconto',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+
+							<t:Column hAlign="End" >
+								<Label text="Valor"/>
+								<t:template>
+									<Text textAlign="End" text="{
+										path: 'ValorPago',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+							
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Imprimir Comprovante" icon="sap-icon://print" type="Emphasized" press=".imprimeRecibo"/>
+						<Button text="Estornar Recebimento" press=".estornoRecebimento"  />
+					</Toolbar>
+				</footer>
+					
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

@@ -1,0 +1,56 @@
+<core:FragmentDefinition
+   	xmlns="sap.m"
+   	xmlns:core="sap.ui.core"
+   	xmlns:t="sap.ui.table" >
+   	<Dialog id="vencimentosDialog"
+		title="Vencimentos"
+		class="sapUiSizeCompact">
+   		
+		<t:Table id="tbVencimentos" 
+			busyIndicatorDelay="0"
+			selectionBehavior="Row"
+			class="sapUiSizeCondensed"
+			enableBusyIndicator="true"
+			alternateRowColors="true"
+			selectionMode="Single" >
+			<t:columns>
+				<t:Column  width="8em" >
+					<Label text="Duplicata"/>
+					<t:template>
+						<Text text="{NumeroDuplicata}" />
+					</t:template>
+				</t:Column>
+				<t:Column  width="10em" >
+					<Label text="Vencimento"/>
+					<t:template>
+						<DatePicker 
+							displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" 
+							dateValue="{DataVencimento}"/>
+					</t:template>
+				</t:Column>
+				
+				<t:Column >
+					<Label text="Valor"/>
+					<t:template>
+						<Input textAlign="End" value="{
+							path: 'ValorDuplicata',
+                        	type: 'sap.ui.model.type.Float',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+								groupingSeparator: '.'
+							}}" />
+					</t:template>
+				</t:Column>
+
+
+			</t:columns>	
+		</t:Table>
+
+   		<buttons>
+   			<Button text="Confirmar" press="confirmaVencimentos" type="Accept" />
+			<Button text="Fechar" press="fechaVencimentos" type="Reject" />
+   		</buttons>
+   </Dialog>
+</core:FragmentDefinition>

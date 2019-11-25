@@ -1,0 +1,20 @@
+<mvc:View controllerName="Perguntas.controller.Add"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+    <Page showHeader="false" class="sapUiResponsiveContentPadding">
+        <content>
+            <core:Fragment fragmentName="Perguntas.fragments.Formulario" type="XML" />
+        </content>
+        <footer>
+             <Toolbar xmlns="sap.m">
+                <ToolbarSpacer />
+                <Button text="Salvar" icon="sap-icon://save" type="Emphasized" press=".save" />
+                <Button text="Cancelar" press=".cancel" />
+            </Toolbar>
+        </footer>
+        
+    </Page>
+
+</mvc:View>    

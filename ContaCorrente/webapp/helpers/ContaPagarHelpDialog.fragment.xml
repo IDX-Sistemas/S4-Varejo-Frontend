@@ -1,0 +1,71 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		title="Contas a Pagar"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{
+			path: '/ContaPagar',
+			sorter: {
+				path:'DataVencimento'
+			},
+			filters: [
+				{ path: 'DataPagamento', operator: 'EQ', value1: null}
+			]
+		}"
+		search="_handleValueHelpSearch" >
+		<columns>
+			<Column>
+				<header>
+					<Text text="No.Duplicata"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Vencimento"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Fornecedor"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Razao Social"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Valor"/>
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<ObjectIdentifier title="{Duplicata}" />
+				<Text text="{
+						path: 'DataVencimento',
+						type: 'sap.ui.model.odata.type.Date',
+						formatOptions: {
+							pattern: 'dd.MM.yyyy',
+							style:'short' 
+						}
+					}" />
+				<Text text="{Fornecedor}" />
+				<Text text="{Fornecedores/RazaoSocial}" />
+				<Text text="{
+						path: 'ValorDuplicata',
+						type: 'sap.ui.model.odata.type.Single',
+						formatOptions: {
+							decimals: 2,
+							decimalSeparator: ',',
+							groupingEnabled: true,
+							groupingSeparator: '.'
+						}
+					}" textAlign="End" />		
+			</cells>
+		</ColumnListItem>
+		
+	</TableSelectDialog>
+</core:FragmentDefinition>

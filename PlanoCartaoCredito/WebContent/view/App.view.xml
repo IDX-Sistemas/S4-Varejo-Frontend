@@ -1,0 +1,91 @@
+ <mvc:View controllerName="PlanoCartaoCredito.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="true"
+						rows="{
+							path: '/Operadoras'
+						}">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Planos Cartao de Credito"/>
+								<ToolbarSpacer/>
+								<SearchField placeholder="Pesquisar Descricao..." width="30%" search="filter"/>
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							<t:Column width="8em" sortProperty="RowId" filterProperty="RowId">
+								<Label text="Plano ID"/>
+								<t:template>
+									<Text text="{RowId}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="Descricao" width="15em">
+								<Label text="Descricao"/>
+								<t:template>
+									<Text text="{Descricao}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="Administrador/Nome">
+								<Label text="Administradora"/>
+								<t:template>
+									<Text text="{Administrador/Nome}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="Taxa" hAlign="End" width="5em">
+								<Label text="Taxa"/>
+								<t:template>
+									<Text text="{
+										path: 'Taxa',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="ParcelaFinal" hAlign="End" width="5em">
+								<Label text="Parcelas"/>
+								<t:template>
+									<Text text="{ParcelaFinal}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="FlagStatus" width="8em">
+								<Label text="Status"/>
+								<t:template>
+									<Text text="{= ${FlagStatus}==='S'?'ATIVO':'INATIVO'}"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Incluir" icon="sap-icon://add" press="add"/>
+						<Button text="Alterar" icon="sap-icon://edit" press="edit"/>
+						<Button text="Excluir" icon="sap-icon://delete" press="detele"/>
+						<ToolbarSeparator/>
+						<Button text="Atualizar" icon="sap-icon://refresh" press="refresh"/>
+					</Toolbar>
+				</footer>
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

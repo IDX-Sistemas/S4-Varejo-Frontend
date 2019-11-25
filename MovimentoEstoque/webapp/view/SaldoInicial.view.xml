@@ -1,0 +1,87 @@
+ <mvc:View controllerName="MovimentoEstoque.controller.SaldoInicial"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="form"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Movimentacao de Estoque"
+				singleContainerFullSize="true">
+				<f:content>
+					<Title xmlns="sap.ui.core" text="Saldo Inicial "/> 
+					
+					<Label text="Produto"/>
+					<Input showValueHelp="true"
+						textFormatMode="Key"
+						selectedKey="{CodigoItem}"
+						showSuggestion="true"
+						suggestionItems="{/Produtos}"
+						suggest="handleSuggestProduto"
+						startSuggestion="2"
+						valueHelpRequest="handleSearchProduto"
+						valueHelpOnly="true" width="50%">
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Descricao}" additionalText="{Codigo}"/>
+						</suggestionItems>
+					</Input>
+					
+					
+					<Label text="Loja Entrada"/>
+					<Input required="true" id="Loja"
+						showValueHelp="true"
+						textFormatMode="Key"
+						selectedKey="{LocalEstoqueEntrada}"
+						showSuggestion="true"
+						suggestionItems="{/Lojas}"
+						suggest="handleSuggestLoja"
+						startSuggestion="2"
+						valueHelpRequest="handleSearchLoja"
+						valueHelpOnly="true"
+						width="50%" >
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}"/>
+						</suggestionItems>
+					</Input>
+					
+					<Label text="Quantidade" />
+					<Input textAlign="End" width="20%" value="{QuantidadeAtual}" />
+						
+					<Label text="Documento"/>
+					<Input value="{NumeroDocumento}" />
+						
+					<Label text="Historico" />
+					<Input value="{Historico}"/>
+					
+					<Title xmlns="sap.ui.core" text=" "/>
+					
+				</f:content>	
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save"   press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

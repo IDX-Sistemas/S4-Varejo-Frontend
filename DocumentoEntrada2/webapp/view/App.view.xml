@@ -1,0 +1,134 @@
+ <mvc:View controllerName="DocumentoEntrada.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="true"
+						rows="{
+							path: '/DocumentoEntrada',
+							sorter: {
+								path: 'DataEmissao', descending: true
+							}
+						}">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Nota Fiscal de Entrada"/>
+								<ToolbarSpacer/>
+								<MenuButton text="Acoes Relacionadas" icon="sap-icon://action">
+									<menu>
+										<Menu>
+											<items>
+												<MenuItem text="Editar Vencimentos" icon="sap-icon://edit" press=".ajustaVencimentos" />
+												<MenuItem text="Classificar Documento" icon="sap-icon://process" press=".classificaDocumento" startsSection="true"/>
+												<MenuItem text="Estornar Classificacao" icon="sap-icon://eraser" press=".estornaClassificacao" startsSection="true"/>
+											</items>
+										</Menu>
+									</menu>
+								</MenuButton>
+								<SearchField placeholder="Pesquisar Fornecedor..." width="30%" search="filter"/>
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							<t:Column width="5em" hAlign="Center">
+								<Label text=" "/>
+								<t:template>
+									<Icon xmlns="sap.ui.core"
+										src="sap-icon://circle-task-2" 
+										tooltip="{
+											path: 'Classificacao',
+											formatter: '.formatter.statusTexto'
+										}"
+										color="{
+											path:'Classificacao',
+											formatter: '.formatter.status'
+										}"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="10em" sortProperty="Numero" filterProperty="Numero">
+								<Label text="Numero"/>
+								<t:template>
+									<Text text="{Numero}"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="5em" sortProperty="Serie" filterProperty="Serie">
+								<Label text="Serie"/>
+								<t:template>
+									<Text text="{Serie}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="DataEmissao" width="10em">
+								<Label text="Emissao"/>
+								<t:template>
+									<Text text="{
+											path: 'DataEmissao',
+											type: 'sap.ui.model.odata.type.Date',
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}
+										}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="8em" sortProperty="Loja" filterProperty="Loja">
+								<Label text="Loja"/>
+								<t:template>
+									<Text text="{Loja}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="Fornecedor" filterProperty="Fornecedor" width="10em">
+								<Label text="Fornecedor"/>
+								<t:template>
+									<Text text="{Fornecedor}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="Fornecedores/RazaoSocial">
+								<Label text="Razao Social"/>
+								<t:template>
+									<Text text="{Fornecedores/RazaoSocial}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="ValorTotal" hAlign="End" width="10em">
+								<Label text="Valor Total"/>
+								<t:template>
+									<Text text="{
+										path: 'ValorTotal',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Incluir" icon="sap-icon://add" press="add"/>
+						<Button text="Alterar" icon="sap-icon://edit" press="edit"/>
+						<Button text="Visualizar" icon="sap-icon://approvals" press="view"/>
+						<Button text="Excluir" icon="sap-icon://delete" press="detele"/>
+						<ToolbarSeparator/>
+						<Button text="Atualizar" icon="sap-icon://refresh" press="refresh"/>
+					</Toolbar>
+				</footer>
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

@@ -1,0 +1,68 @@
+ <mvc:View controllerName="Perguntas.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+                    <Table xmlns="sap.ui.table"
+                        id="table"
+                        class="sapUiSizeCondensed"
+                        alternateRowColors="true"
+                        selectionMode="Single"
+                        visibleRowCountMode="Auto"
+                        selectionBehavior="Row"
+                        rows="{
+                            path: '/Perguntas',
+                            sorter: {
+                                path: 'Codigo,Ordem'
+                            }
+                        }">
+                        <extension>
+                            <Toolbar xmlns="sap.m">
+                                <Title text="Perguntas" />
+                                <ToolbarSpacer />
+                                <SearchField placeholder="Filtrar Descricao..." search=".search" width="30rem" />
+                            </Toolbar>
+                        </extension>
+                        <columns>
+                            <Column filterProperty="Codigo" sortProperty="Codigo" width="10rem">
+                                <Label xmlns="sap.m" text="Codigo"/>
+                                <template>
+                                    <Text xmlns="sap.m" text="{Codigo}" />
+                                </template>
+                            </Column>
+                            <Column sortProperty="Ordem" width="5rem">
+                                <Label xmlns="sap.m" text="Ordem"/>
+                                <template>
+                                    <Text xmlns="sap.m" text="{Ordem}" />
+                                </template>
+                            </Column>
+                            <Column sortProperty="Descricao">
+                                <Label xmlns="sap.m" text="Descricao"/>
+                                <template>
+                                    <Text xmlns="sap.m" text="{Descricao}" />
+                                </template>
+                            </Column>
+                        </columns>
+                        
+
+                    </Table>
+
+				</content>
+                <footer>
+                    <Toolbar xmlns="sap.m">
+                        <ToolbarSpacer />
+                        <Button text="Incluir" press=".add" type="Emphasized" />
+                        <Button text="Editar" press=".edit" />
+                        <Button text="Remover" press=".delete" />
+                        <ToolbarSeparator />
+                        <Button text="Atualizar" press=".refresh" />
+                    </Toolbar>
+                </footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

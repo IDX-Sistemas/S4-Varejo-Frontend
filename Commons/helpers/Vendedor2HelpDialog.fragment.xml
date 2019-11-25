@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		title="Vendedores"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{
+			path: '/Vendedores',
+			sorter:{
+				path: 'Codigo'
+			}
+		}"
+		search="_handleValueHelpSearch"
+		confirm="_handleValueHelpClose"
+		cancel="_handleValueHelpClose">
+		<columns>
+			<Column>
+				<header>
+					<Text text="Vendedor"/>
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<ObjectIdentifier
+						title="{Codigo} {Nome}"
+						text="{Codigo}"/>
+			</cells>
+		</ColumnListItem>
+		
+	</TableSelectDialog>
+</core:FragmentDefinition>

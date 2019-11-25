@@ -1,0 +1,203 @@
+ <mvc:View controllerName="RecebimentoTitulos.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" >
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<Toolbar>
+						<Title text="Recebimento Titulo" />
+						<ToolbarSpacer />
+					</Toolbar>
+				
+					<HBox  width="100%" class="sapUiResponsiveContentPadding">
+						<VBox width="50%" class="sapUiResponsiveContentPadding">
+							<Label text="Cliente" required="true"/>
+							<Input id="cliente" width="30%"
+								showValueHelp="true"
+								value="{model>/Cliente}"
+								valueHelpRequest="handleSearchCliente"
+								valueHelpOnly="true" change=".buscaDadosCliente">
+							</Input>
+							<Label text="Nome"/>
+							<Input value="{Nome}" editable="false"/>
+						</VBox>
+						<VBox width="30%" class="sapUiResponsiveContentPadding"/>
+						<VBox width="20%" class="sapUiResponsiveContentPadding">
+							<Label text="Data Movimentacao" required="true"/>
+							<DatePicker dateValue="{model>/Data}" id="data"
+								displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" change=".exibeTitulos"/>
+						
+							<Label text="Total"/>
+							<Input value="{
+									path: 'model>/Total',
+									type: 'sap.ui.model.odata.type.Single',
+									formatOptions: {
+										decimals: 2,
+										decimalSeparator: ',',
+										groupingEnabled: true,
+			          					groupingSeparator: '.'
+									}
+								}" editable="false" textAlign="End" />
+						</VBox>
+					</HBox>
+					
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionBehavior="RowSelector"
+						class="sapUiSizeCondensed"
+						enableBusyIndicator="true"
+						alternateRowColors="false"
+						visibleRowCountMode="Fixed" 
+						visibleRowCount="14"
+						rows="{titulos>/}">
+						<t:columns>
+							<t:Column width="8em" filterProperty="Duplicata">
+								<Label text="Numero"/>
+								<t:template>
+									<!-- <Text text="{titulos>NumeroDuplicata}"/>  -->
+									<Link text="{titulos>NumeroDuplicata}" />
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="5em">
+								<Label text="Loja"/>
+								<t:template>
+									<Text text="{titulos>Loja}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="8em">
+								<Label text="Documento"/>
+								<t:template>
+									<Text text="{titulos>NumeroDocumento}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="5em">
+								<Label text="Tipo"/>
+								<t:template>
+									<Text text="{
+											path: 'titulos>TipoVenda',
+											formatter: '.formatter.tipoVenda'
+										}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="6em">
+								<Label text="Emissao"/>
+								<t:template>
+									<Text text="{
+											path: 'titulos>DataEmissao',
+											type: 'sap.ui.model.odata.type.DateTimeOffset',
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="6em">
+								<Label text="Vencimento"/>
+								<t:template>
+									<Text text="{
+											path: 'titulos>DataVencimento',
+											type: 'sap.ui.model.odata.type.DateTimeOffset',
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="5em" >
+								<Label text="Atraso" />
+								<t:template>
+									<Text text="{titulos>Atraso}" />
+								</t:template>
+							</t:Column>
+							
+							<t:Column hAlign="End" width="8em">
+								<Label text="Valor Duplicata"/>
+								<t:template>
+									<Text text="{
+										path: 'titulos>ValorDuplicata',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column hAlign="End" width="8em">
+								<Label text="Saldo Duplicata"/>
+								<t:template>
+									<Text text="{
+										path: 'titulos>Saldo',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column hAlign="End"  width="8em">
+								<Label text="Valor Receber"/>
+								<t:template>
+									<Input value="{
+										path: 'titulos>ValorReceber',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}" textAlign="End" change=".calculaTotal"/>
+								</t:template>
+							</t:Column> 
+							
+							<t:Column width="5em">
+								<Label text="Quitar"/>
+								<t:template>
+									<Select selectedKey="{
+											path: 'titulos>FlagPgto',
+											type: 'sap.ui.model.odata.type.Int16'
+										}" forceSelection="false">
+										<core:ListItem key="0" text="" />
+										<core:ListItem key="1" text="SIM" />
+									</Select>
+								</t:template>
+							</t:Column>
+							 
+						</t:columns>
+					</t:Table>
+						
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Confirmar" icon="sap-icon://save" press=".confirmaRecebimento" type="Emphasized" />
+						<Button text="Extrato" icon="sap-icon://print" press=".imprimeExtrato" />
+						<ToolbarSeparator />
+						<Button text="Atualizar" icon="sap-icon://synchronize" press=".exibeTitulos" />
+					</Toolbar>
+				</footer>
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

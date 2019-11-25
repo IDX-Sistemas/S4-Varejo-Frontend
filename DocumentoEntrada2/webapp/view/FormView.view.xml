@@ -1,0 +1,311 @@
+ <mvc:View controllerName="DocumentoEntrada.controller.FormView"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="formMov"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Visualizar Nota Fiscal de Entrada"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text="Dados da Nota Fiscal"/> 
+					<Label text="Número" labelFor="numero"/>
+					<Input id="numero" value="{
+							path: 'Numero',
+							type: 'sap.ui.model.type.String',
+							constraints:{
+								nullable : false, 
+								maxLength : 8
+							}
+							
+						}" required="true" width="50%" editable="false" />
+					
+					<Label text="Serie" labelFor="serie"/>
+					<Input id="serie" value="{
+							path: 'Serie',
+							type: 'sap.ui.model.type.String',
+							constraints:{
+								nullable : false, 
+								maxLength : 3
+							}
+						}"  width="50%" editable="false"/>
+						
+					<Label text="Loja"/>
+					<Input required="true" id="Loja" editable="false"
+						showValueHelp="true"
+						textFormatMode="KeyValue"
+						selectedKey="{Loja}"
+						showSuggestion="true"
+						suggestionItems="{/Lojas}"
+						suggest="handleSuggestLoja"
+						startSuggestion="2"
+						valueHelpRequest="handleSearchLoja"
+						valueHelpOnly="true"
+						width="50%" >
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}"/>
+						</suggestionItems>
+					</Input>
+					
+					<Label text="Fornecedor" />
+					<Input required="true" id="Fornecedor" editable="false"
+						showValueHelp="true"
+						textFormatMode="KeyValue"
+						selectedKey="{Fornecedor}"
+						showSuggestion="true"
+						suggestionItems="{/Fornecedores}"
+						suggest="handleSuggestFornecedor"
+						startSuggestion="2"
+						valueHelpRequest="handleSearchFornecedor"
+						valueHelpOnly="true"
+						change=".fornecedorChange">
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{RazaoSocial}" additionalText="{Codigo}" />
+						</suggestionItems>
+					</Input>
+					
+					<Label text="Emissão" labelFor="emissao" required="true"/>
+					<DatePicker id="emissao" dateValue="{DataEmissao}" editable="false"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="40%"/>
+						
+					<Label text="Recebimento" labelFor="recebimento" required="true"/>
+					<DatePicker id="recebimento" dateValue="{DataRecebimento}" editable="false"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="40%"/>
+						
+					<Label text="Duplicata" labelFor="numeroDuplicata"/>
+					<Input id="numeroDuplicata" 
+						value="{
+							path: 'NumeroDuplicata',
+							type: 'sap.ui.model.type.String',
+							constraints:{
+								nullable : false, 
+								maxLength : 6
+							}
+						}"  width="50%" editable="false"/>
+					
+					<Label text="Condicao de Pagamento" />
+					<Input required="true" editable="false"
+						showValueHelp="true"
+						value="{Condicao}"
+						valueHelpOnly="false"
+						valueHelpRequest="handleSearchCondicaoPagamento" >
+						<layoutData>
+							<l:GridData span="XL2 L2 M2 S4" />
+						</layoutData>
+					</Input>
+					<Input value="{
+							parts: [
+								{ path: 'Condicao' },
+								{ path: 'CondicaoPagamento/Descricao' }
+							],
+							formatter: '.formatter.descricaoCondicao'
+						}" editable="false"/>
+
+
+
+					<core:Title text="Totalizadores / Impostos"/>
+					<Label text="Condicoes" labelFor="condicoes"/>
+					<Input id="condicoes"  editable="false"
+						value="{CondicaoPagamentoInfo}" />
+
+					<Label text="Natureza da Operacao" labelFor="naturezaOperacao"/>
+					<Input id="naturezaOperacao"  editable="false"
+						value="{
+							path: 'NaturezaOperacao',
+							type: 'sap.ui.model.type.String',
+							constraints:{
+								nullable : false, 
+								maxLength : 3
+							}
+						}"  width="50%" />
+					
+					<Label text="Classificacao Fiscal" labelFor="classificacaoFiscal"/>
+					<Input id="classificacaoFiscal" editable="false"
+						value="{
+							path: 'ClassificacaoFiscal',
+							type: 'sap.ui.model.type.String',
+							constraints:{
+								nullable : false, 
+								maxLength : 3
+							}
+						}"  width="50%" />
+						
+					<Label text="Base Calculo" labelFor="baseCalculo"/>
+					<Input id="baseCalculo" textAlign="End" editable="false"
+						width="50%"
+						value="{
+							path: 'BaseCalculo',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+					<Label text="ICMS" labelFor="valorIcms"/>
+					<Input id="valorIcms" textAlign="End" editable="false"
+						width="50%"
+						value="{
+							path: 'ValorICMS',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+					<Label text="IPI" labelFor="valorIpi"/>
+					<Input id="valorIpi" textAlign="End" editable="false"
+						width="50%"
+						value="{
+							path: 'ValorIPI',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+					
+					<Label text="Valor Total" labelFor="valorTotal"/>
+					<Input id="valorTotal" textAlign="End" editable="false"
+						width="50%"
+						value="{
+							path: 'ValorTotal',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+				</f:content>	
+			</f:SimpleForm>
+			
+			<Panel width="auto">
+				
+				<content>
+					
+					<t:Table id="tableItems"
+						class="sapUiSizeCondensed"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						enableSelectAll="false"
+						editable="false"
+						visibleRowCount="12"
+						enableBusyIndicator="true"
+						alternateRowColors="false"
+						enableCustomFilter="false">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Itens da Nota Fiscal" />
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							<t:Column >
+								<Label text="Codigo" required="true"/>
+								<t:template templateShareable="true">
+									<Input showValueHelp="true"  editable="false"
+										value="{Codigo}"
+										valueHelpRequest="handleSearchProduto" change="buscaProduto"/>
+									
+								</t:template>
+							</t:Column>
+							
+							<t:Column >
+								<Label text="Descricao" required="true"/>
+								<t:template templateShareable="true">
+									<Text text="{
+										parts: [ 
+											{ path: 'Codigo' },
+											{ path: 'Produto/Descricao' }
+										],
+										formatter: '.formatter.descricaoProduto'
+									}" />
+								</t:template>
+							</t:Column>
+
+							<t:Column width="15em" hAlign="End">
+								<Label text="Valor Unitário"/>
+								<t:template>
+									<Input id="valorUnitario" textAlign="End" editable="false"
+										value="{
+											path: 'ValorUnitario',
+											type: 'sap.ui.model.odata.type.Single',
+											formatOptions: {
+												decimals: 2,
+												decimalSeparator: ',',
+												groupingEnabled: true,
+			          							groupingSeparator: '.'
+											}
+										}"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="10em" hAlign="End">
+								<Label text="Qtd."/>
+								<t:template>
+									<Input id="qtd" textAlign="End"  editable="false"
+										value="{
+											path: 'Quantidade',
+											type: 'sap.ui.model.odata.type.Int32'
+										}"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="15em" hAlign="End">
+								<Label text="Total"/>
+								<t:template>
+									<Text text="{
+											parts: [
+												{ 
+													path: 'ValorUnitario',
+												  	type: 'sap.ui.model.type.Float',
+										          	formatOptions: { groupingEnabled: false } 
+												},
+												{ 
+													path: 'Quantidade',
+													type: 'sap.ui.model.type.Integer'
+												}
+											],
+											formatter: '.formatter.totalFormatter' }"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</content>	
+			</Panel>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Fechar"  press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

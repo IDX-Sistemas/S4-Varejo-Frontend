@@ -1,0 +1,167 @@
+ <mvc:View controllerName="ContaReceber.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="true"
+						rows="{
+							path: '/ContaReceber',
+							sorter:{ path: 'RowId', descending: true }
+						}">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Contas a Receber"/>
+								<ToolbarSpacer/>
+								<Label text="Exibir Titulos" required="true"/>
+								<Select forceSelection="true" selectedKey="2" width="15%" id="exibeTitulo">
+									<Item xmlns="sap.ui.core" key="0" text="EM ABERTO"  />
+									<Item xmlns="sap.ui.core" key="1" text="PAGOS" />
+									<Item xmlns="sap.ui.core" key="2" text="TODOS"  />
+								</Select>
+								<Button icon="sap-icon://filter" press="filtraTitulos"/>
+								<SearchField placeholder="Pesquisar Nome" width="30%" id="filtraNome" search="filtraTitulos"/>			
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							
+							<t:Column width="3em"  hAlign="Center" >
+								<Label text=" "/>
+								<t:template>
+									<core:Icon 
+										src="sap-icon://circle-task-2" 
+										color="{= ${FlagPgto}==='1'?'Negative':'Positive'}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column width="8em" sortProperty="Duplicata" filterProperty="Duplicata">
+								<Label text="Numero"/>
+								<t:template>
+									<Text text="{NumeroDuplicata}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Loja"  width="5em">
+								<Label text="Loja"/>
+								<t:template>
+									<Text text="{Loja}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="NumeroDocumento"  width="8em">
+								<Label text="Documento"/>
+								<t:template>
+									<Text text="{NumeroDocumento}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="TipoVenda"  width="5em">
+								<Label text="Tipo"/>
+								<t:template>
+									<Text text="{
+											path: 'TipoVenda',
+											formatter: '.formatter.tipoVenda'
+										}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="NumeroCI"  width="8em">
+								<Label text="CI"/>
+								<t:template>
+									<Text text="{NumeroCI}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="DataEmissao"  width="6em">
+								<Label text="Emissao"/>
+								<t:template>
+									<Text text="{
+											path: 'DataEmissao',
+											type: 'sap.ui.model.odata.type.DateTimeOffset',
+											constraints: {
+												precision: 3,
+												v4: true
+											},
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="DataVencimento"  width="6em">
+								<Label text="Vencimento"/>
+								<t:template>
+									<Text text="{
+											path: 'DataVencimento',
+											type: 'sap.ui.model.odata.type.DateTimeOffset',
+											constraints: {
+												precision: 3,
+												v4: true
+											},
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Cliente"  width="6em">
+								<Label text="Cliente"/>
+								<t:template>
+									<Text text="{Cliente}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="Clientes/Nome">
+								<Label text="Nome"/>
+								<t:template>
+									<Text text="{Clientes/Nome}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column sortProperty="ValorDuplicata" hAlign="End" width="8em">
+								<Label text="Valor"/>
+								<t:template>
+									<Text text="{
+										path: 'ValorDuplicata',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+							
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Incluir" icon="sap-icon://add" press="add"/>
+						<Button text="Alterar" icon="sap-icon://edit" press="edit"/>
+						<Button text="Excluir" icon="sap-icon://delete" press="detele"/>
+						<ToolbarSeparator/>
+						<Button text="Atualizar" icon="sap-icon://refresh" press="refresh"/>
+					</Toolbar>
+				</footer>
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

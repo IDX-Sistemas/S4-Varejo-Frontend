@@ -1,0 +1,58 @@
+ <mvc:View controllerName="Usuarios.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="true"
+						rows="{
+							path: '/Usuarios'
+						}">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Usuarios"/>
+								<ToolbarSpacer/>
+								<SearchField placeholder="Pesquisar Nome" width="30%" search="filter"/>			
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							<t:Column width="8em" sortProperty="RowId" >
+								<Label text="Usuario ID"/>
+								<t:template>
+									<Text text="{RowId}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="Nome"  >
+								<Label text="Nome"/>
+								<t:template>
+									<Text text="{Nome}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Incluir" icon="sap-icon://add" press="add"/>
+						<Button text="Alterar" icon="sap-icon://edit" press="edit"/>
+						<ToolbarSeparator/>
+						<Button text="Atualizar" icon="sap-icon://refresh" press="refresh"/>
+					</Toolbar>
+				</footer>
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

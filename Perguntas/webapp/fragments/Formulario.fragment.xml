@@ -1,0 +1,79 @@
+
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+    <SimpleForm xmlns="sap.ui.layout.form"
+        id="form"
+        editable="true"
+        layout="ResponsiveGridLayout"
+        labelSpanXL="4"
+        labelSpanL="4"
+        labelSpanM="4"
+        labelSpanS="12"
+        adjustLabelSpan="false"
+        emptySpanXL="0"
+        emptySpanL="0"
+        emptySpanM="0"
+        emptySpanS="0"
+        columnsXL="3"
+        columnsL="2"
+        columnsM="2"
+        title="{view>/titulo}"
+        singleContainerFullSize="true">
+        <content>
+            <Title xmlns="sap.ui.core" text="Dados da Pergunta"/> 
+            <Label xmlns="sap.m" text="Codigo" />
+            <Input id="codigo" xmlns="sap.m" value="{Codigo}" required="true" width="100px"
+                editable="{view>/codigoEdit}"
+                showValueHelp="true"
+                valueHelpOnly="true"
+                valueHelpRequest="pesquisaRelatorio"
+                />
+
+            <Label xmlns="sap.m" text="Ordem" />
+            <Input id="ordem" xmlns="sap.m" value="{Ordem}" width="100px" editable="{view>/ordemEdit}"/> 
+
+            <Label xmlns="sap.m" text="Descricao" />
+            <Input id="descricao" xmlns="sap.m" value="{Descricao}" required="true" /> 
+
+            <Label xmlns="sap.m" text="Parametro" />
+            <Input xmlns="sap.m" value="{Parametro}" required="true" /> 
+
+            <Label xmlns="sap.m" text="Tipo" required="true"/>
+            <Select xmlns="sap.m" forceSelection="false" selectedKey="{Tipo}" width="150px">
+                <core:Item key="C" text="TEXTO" />
+                <core:Item key="N" text="NUMERO" />
+                <core:Item key="L" text="LOGICO" />
+                <core:Item key="D" text="DATA" />
+            </Select>
+
+            <!--<Label xmlns="sap.m" text="Componente" />-->
+            <!--<Input xmlns="sap.m" value="{Componente}" required="true" width="150px"/> -->
+            
+            <Label xmlns="sap.m" text="Obrigatorio" required="true"/>
+            <Select xmlns="sap.m" forceSelection="false" selectedKey="{Obrigatorio}" width="100px">
+                <core:Item key="N" text="NAO" />
+                <core:Item key="S" text="SIM" />
+            </Select>
+            
+            <Label xmlns="sap.m" text="Inativo" required="true"/>
+            <Select xmlns="sap.m" forceSelection="false" selectedKey="{Inativo}" width="100px" >
+                <core:Item key="N" text="NAO" />
+                <core:Item key="S" text="SIM" />
+            </Select>
+
+            <Label xmlns="sap.m" text="Resposta" />
+            <Input xmlns="sap.m" value="{Resposta}" /> 
+
+            <Label xmlns="sap.m" text="Lista" />
+            <Input xmlns="sap.m" value="{Lista}" /> 
+
+            <Label xmlns="sap.m" text="Value Help" />
+            <Input xmlns="sap.m" value="{ValueHelp}"/> 
+
+            <Title xmlns="sap.ui.core" /> 
+            
+        </content>
+
+    </SimpleForm>
+</core:FragmentDefinition>

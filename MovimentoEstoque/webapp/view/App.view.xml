@@ -1,0 +1,95 @@
+ <mvc:View controllerName="MovimentoEstoque.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="true"
+						rows="{
+							path: '/MovimentoEstoque'
+						}">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Movimentacao de Estoque"/>
+								<ToolbarSpacer/>
+								<Button text="Saldo Inicial" icon="sap-icon://initiative" press="saldoInicial"/>
+								<Button text="Acerto a Maior" icon="sap-icon://add" press="acertoMaior"/>
+								<Button text="Acerto a Menor" icon="sap-icon://less" press="acertoMenor"/>
+								<Button text="Transferencia" icon="sap-icon://duplicate" press="transferencia"/>
+								<SearchField placeholder="Pesquisar Codigo" width="30%" search="filter"/>
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							<t:Column width="8em" sortProperty="RowId" filterProperty="RowId">
+								<Label text="Codigo"/>
+								<t:template>
+									<Text text="{RowId}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="DataMovimento">
+								<Label text="Data"/>
+								<t:template>
+									<Text text="{
+											path: 'DataMovimento',
+											type: 'sap.ui.model.odata.type.Date',
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}
+										}" />
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="CodigoItem">
+								<Label text="Item"/>
+								<t:template>
+									<Text text="{CodigoItem}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="LocalEstoqueSaida">
+								<Label text="Saida"/>
+								<t:template>
+									<Text text="{LocalEstoqueSaida}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="LocalEstoqueEntrada">
+								<Label text="Entrada"/>
+								<t:template>
+									<Text text="{LocalEstoqueEntrada}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="QuantidadeAtual">
+								<Label text="Qtd"/>
+								<t:template>
+									<Text text="{QuantidadeAtual}"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="Historico">
+								<Label text="Historico"/>
+								<t:template>
+									<Text text="{Historico}"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Atualizar" icon="sap-icon://refresh" press="refresh"/>
+					</Toolbar>
+				</footer>
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 

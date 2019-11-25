@@ -1,0 +1,285 @@
+ <mvc:View controllerName="ContaReceber.controller.FormEdit"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="formMov"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Editar Conta a Receber"
+				singleContainerFullSize="true">
+				<f:content>
+					<Title xmlns="sap.ui.core" text="Dados do Titulo"/> 
+					
+					<Input value="{FlagPgto}" visible="false"/>
+
+					<Label text="Numero"/>
+					<MaskInput mask="CCCCCC/C" value="{NumeroDuplicata}" placeholderSymbol="_" required="true" editable="false">
+						<rules>
+							<MaskInputRule maskFormatSymbol="C" regex="[A-Z0-9]"/>
+						</rules>
+						<layoutData>
+							<GridData xmlns="sap.ui.layout" span="XL2 L3 M3 S4" />
+						</layoutData>
+					</MaskInput> 
+					
+					<Label text="Loja"/>
+					<Input required="true" id="Loja" editable="false"
+						showValueHelp="true"
+						textFormatMode="KeyValue"
+						selectedKey="{Loja}"
+						showSuggestion="true"
+						suggestionItems="{/Lojas}"
+						suggest="handleSuggestLoja"
+						startSuggestion="2"
+						valueHelpRequest="handleSearchLoja"
+						valueHelpOnly="true"
+						width="50%" >
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}"/>
+						</suggestionItems>
+					</Input>
+					
+					<Label text="Documento"/>
+					<Input value="{NumeroDocumento}" width="50%"/>
+
+					<Label text="CI"/>
+					<Input value="{NumeroCI}" width="50%"/>
+
+					<Label text="Tipo" required="true"/>
+					<Select selectedKey="{TipoVenda}" forceSelection="false" width="50%">
+						<Item xmlns="sap.ui.core" key="1" text="VISTA"  />
+						<Item xmlns="sap.ui.core" key="2" text="DUPLIC" />
+						<Item xmlns="sap.ui.core" key="3" text="CARNE"  />
+						<Item xmlns="sap.ui.core" key="4" text="CHEQUE" />
+						<Item xmlns="sap.ui.core" key="5" text="CARNE"  />
+					</Select>
+
+					<Label text="Cliente" />
+					<Input required="true" id="Cliente"
+						showValueHelp="true"
+						textFormatMode="KeyValue"
+						selectedKey="{Cliente}"
+						showSuggestion="true"
+						suggestionItems="{/Clientes}"
+						suggest="handleSuggestCliente"
+						startSuggestion="2"
+						valueHelpRequest="handleSearchCliente"
+						valueHelpOnly="true" >
+						<suggestionItems>
+							<core:ListItem key="{Codigo}" text="{Nome}" additionalText="{Codigo}" />
+						</suggestionItems>
+					</Input>
+					
+						
+					
+					
+					<core:Title text="Datas/Valores"/>
+
+					<Label text="Emissao" />
+					<DatePicker dateValue="{DataEmissao}" editable="true" 
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="40%" required="true"/>
+						
+					<Label text="Vencimento" />
+					<DatePicker dateValue="{DataVencimento}" editable="true"
+						displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="40%" required="true"/>	
+
+					<Label text="Fatura" />
+					<Input width="50%" textAlign="End"
+						value="{
+							path: 'ValorFatura',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+
+					<Label text="Duplicata" />
+					<Input width="50%" textAlign="End"
+						value="{
+							path: 'ValorDuplicata',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+					
+					<Label text="Juros" />
+					<Input textAlign="End" width="50%"
+						value="{
+							path: 'Juros',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+					<Label text="Desconto"  />
+					<Input editable="true" width="50%" textAlign="End"
+						value="{
+							path: 'Desconto',
+							type: 'sap.ui.model.odata.type.Single',
+							formatOptions: {
+								decimals: 2,
+								decimalSeparator: ',',
+								groupingEnabled: true,
+	          					groupingSeparator: '.'
+							}
+						}"/>
+						
+					
+				</f:content>	
+			</f:SimpleForm>
+			
+
+			<!-- TABLE BAIXAS-->
+			<Panel width="auto">
+				<content>
+					<t:Table id="table" 
+						busyIndicatorDelay="0"
+						class="sapUiSizeCondensed"
+						enableBusyIndicator="true"
+						alternateRowColors="true"
+						visibleRowCount="6"
+						enableSelectAll="true"
+						selectionMode="Single">
+
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Recebimentos"/>
+								<ToolbarSpacer />
+								<Button text="Estornar Recebimento" icon="sap-icon://undo" press=".estornaPagamento"/>
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							
+							<t:Column >
+								<Label text="Numero"/>
+								<t:template>
+									<Text text="{NumeroDuplicata}"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column >
+								<Label text="Loja"/>
+								<t:template>
+									<Text text="{Loja}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							
+							<t:Column >
+								<Label text="Doc/Recibo"/>
+								<t:template>
+									<Text text="{NumeroDocumento}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+
+
+							<t:Column >
+								<Label text="Data Pagto."/>
+								<t:template>
+									<Text text="{
+											path: 'DataPagamento',
+											type: 'sap.ui.model.odata.type.DateTimeOffset',
+											constraints: {
+												precision: 3,
+												v4: true
+											},
+											formatOptions: {
+												pattern: 'dd.MM.yyyy',
+												style:'short' 
+											}}"/>
+								</t:template>
+							</t:Column>
+
+							<t:Column  hAlign="End">
+								<Label text="Valor Recebido"/>
+								<t:template>
+									<Text text="{
+										path: 'ValorPago',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+											groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+
+							<t:Column hAlign="End">
+								<Label text="Juros"/>
+								<t:template>
+									<Text text="{
+										path: 'ValorJuros',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+											groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+
+							<t:Column hAlign="End">
+								<Label text="Desconto"/>
+								<t:template>
+									<Text text="{
+										path: 'ValorDesconto',
+										type: 'sap.ui.model.odata.type.Single',
+										formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+											groupingSeparator: '.'
+										}
+									}"/>
+								</t:template>
+							</t:Column>
+
+						</t:columns>
+					</t:Table>
+				</content>
+			</Panel>		
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save" press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 

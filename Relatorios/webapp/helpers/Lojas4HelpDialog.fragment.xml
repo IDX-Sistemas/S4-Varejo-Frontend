@@ -1,0 +1,34 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		title="Lojas"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		items="{
+			path: '/Lojas',
+			sorter:{
+				path: 'Codigo'
+			}
+		}"
+		search="_handleValueHelpSearch">
+		<columns>
+			<Column>
+				<header>
+					<Text text="Loja"/>
+				</header>
+			</Column>
+            <Column>
+				<header>
+					<Text text="Nome"/>
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+                <Text text="{Nome}"/>
+				<ObjectIdentifier title="{Codigo}"/>
+			</cells>
+		</ColumnListItem>
+		
+	</TableSelectDialog>
+</core:FragmentDefinition>

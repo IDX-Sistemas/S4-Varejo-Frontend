@@ -1,0 +1,52 @@
+ <mvc:View controllerName="br.com.idxtec.Lojas.controller.FormAdd"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<Page  showHeader="false"  >
+		<content>
+			<f:SimpleForm 
+				id="form"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="3"
+				columnsL="2"
+				columnsM="2"
+				title="Incluir Loja"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text="Dados da Loja"/>
+					<Label text="Codigo"/>
+					<Input  value="{Codigo}"  required="true" />
+					<Label text="Nome"/>
+					<Input  value="{Nome}"  required="true" />	
+					<Label text="Tipo"/>
+					<Select forceSelection="false" 
+							selectedKey="{MovimentaEstoque}" >
+						<Item xmlns="sap.ui.core" key="S" text="SIM"/>
+						<Item xmlns="sap.ui.core" key="A" text="NAO"/>
+					</Select>	
+					<core:Title/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button  text="Salvar"  icon="sap-icon://save"   press="save"   type="Emphasized" />
+				<Button  text="Cancelar"  icon="sap-icon://nav-back"   press="cancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View> 
