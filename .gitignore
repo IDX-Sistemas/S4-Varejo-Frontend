@@ -1,2 +1,7 @@
 node_modules
 dist
+.classpath
+.project
+.settings
+META-INF
+WEB-INF
