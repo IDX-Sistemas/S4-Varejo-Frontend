@@ -1,0 +1,22 @@
+{
+    "name": "sample",
+    "version": "1.0.0",
+    "author": "IDX Tecnologia",
+    "engines": {
+        "node": ">=10.0.0"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "build": "rimraf dist && ui5 build --a"
+    },
+    "devDependencies": {
+        "@openui5/ts-types": "^1.60.3",
+        "@ui5/cli": "^1.10.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.16.3",
+        "http-proxy-middleware": "^0.17.4",
+        "morgan": "^1.9.1",
+        "open": "^6.4.0",
+        "rimraf": "^2.6.3"
+    }
+}

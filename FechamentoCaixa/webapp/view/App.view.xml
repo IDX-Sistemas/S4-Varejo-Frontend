@@ -1,0 +1,74 @@
+ <mvc:View controllerName="FechamentoCaixa.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiResponsiveContentPadding">
+				<content>
+					<Table id="table"
+		                inset="false"
+                        alternateRowColors="true"
+		                items="{model>/}">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <content>
+                                    <Title text="Fechamento de Caixa"/>
+                                    <ToolbarSpacer/>
+                                    
+                                    <Label text="Loja" />
+                                    <Input required="true" 
+                                        showValueHelp="true"
+                                        value="{viewModel>/Loja}"
+                                        width="15%"
+                                        valueHelpRequest="handleSearchLoja"
+                                        valueHelpOnly="true" >
+                                    </Input>
+                                    
+                                    <Label text="Data" />
+                                    <DatePicker id="emissao" dateValue="{viewModel>/Data}"
+                                        displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa" width="15%"/>
+                                        
+                                    <Button text="Listar" type="Emphasized" icon="sap-icon://action" press=".bindRows"/>
+                                </content>
+                            </OverflowToolbar>
+		                </headerToolbar>
+                        <columns>
+                            <Column>
+                                <Text text="Lancamento" />
+                            </Column>
+                            <Column width="25em" hAlign="End">
+                                <Text text="Valor" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <ObjectIdentifier title="{model>Texto}" />
+                                    <ObjectNumber textAlign="End" number="{
+                                        path: 'model>Valor',
+                                        type: 'sap.ui.model.odata.type.Single',
+								        formatOptions: {
+											decimals: 2,
+											decimalSeparator: ',',
+											groupingEnabled: true,
+				          					groupingSeparator: '.'
+										}  
+                                    }"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table> 
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button id="doneButton" text="Cancelar" press=".onResetChanges"/>
+					</Toolbar>
+				</footer>
+					
+			</Page>
+		</pages>
+	</App>
+</mvc:View> 
