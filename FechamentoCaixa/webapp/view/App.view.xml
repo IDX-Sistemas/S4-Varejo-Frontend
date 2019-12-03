@@ -61,12 +61,6 @@
                         </items>
                     </Table> 
 				</content>
-				<footer>
-					<Toolbar>
-						<ToolbarSpacer/>
-						<Button id="doneButton" text="Cancelar" press=".onResetChanges"/>
-					</Toolbar>
-				</footer>
 					
 			</Page>
 		</pages>
