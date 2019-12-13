@@ -19,6 +19,8 @@ sap.ui.define([
     	const oRouter = this.getRouter();
     	oRouter.getRoute("Edit").attachMatched( this._routerMatch , this );
         
+        window["idxtec_pedido_venda_status"] = "update";
+
       	this._oErrorHandler = new ErrorHanlder(this);
     },
 

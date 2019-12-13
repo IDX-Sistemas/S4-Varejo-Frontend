@@ -10,7 +10,7 @@
 	<Page  showHeader="false"  >
 		<content>
 			<Toolbar>
-				<Title text="Incluir Pedido de Venda" />
+				<Title text="Alterar Pedido de Venda" />
 				<ToolbarSpacer />
 				<Button icon="sap-icon://download" text="Carregar items da CI" tooltip="Carregar itens da CI" press=".buscarCI"/>
 				<Button icon="sap-icon://simulate" text="Totalizar Pedido" tooltip="Totalizar pedido" press=".totalizaPedido" />

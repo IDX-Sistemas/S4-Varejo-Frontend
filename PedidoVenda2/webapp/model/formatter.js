@@ -1,9 +1,8 @@
 //@ts-nocheck
 sap.ui.define([
-	"sap/ui/core/format/NumberFormat",
-	"PedidoVenda/service/api"
+	"sap/ui/core/format/NumberFormat"
 ], 
-function(NumberFormat, api){
+function(NumberFormat){
 	
 	return {
 		
@@ -64,10 +63,6 @@ function(NumberFormat, api){
 
 			if (sCodigo){
 				
-				if (sDescricao){
-					return sDescricao;
-				}
-	
 				const oFunction = this.getModel().bindContext("/GetDescricaoProduto(...)");
 				oFunction.setParameter("Codigo", sCodigo);
 				
