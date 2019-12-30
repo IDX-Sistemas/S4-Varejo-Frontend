@@ -103,8 +103,7 @@ sap.ui.define([
 
 						oContext.setProperty("ValorUnitario", ValorVista);
 						oContext.setProperty("Secao", Secao);
-					}
-	    			else {
+					} else {
 						oInput.focus();
 						oContext.setProperty("Codigo", "");
 						MessageBox.error("Produto não cadastrado.")	

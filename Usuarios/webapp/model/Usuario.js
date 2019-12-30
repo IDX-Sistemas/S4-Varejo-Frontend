@@ -8,6 +8,7 @@ function(BaseObject) {
         constructor: function(){
             this.Nome="";
             this.Senha="";
+            this.Funcao="";
         }
     });
 });
