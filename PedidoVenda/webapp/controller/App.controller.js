@@ -185,7 +185,11 @@ sap.ui.define([
                     oModel.refresh();
                     MessageBox.success("Pedido faturado com sucesso.");
                 } catch (oError) {
-                    MessageBox.error(oError.message);
+                    MessageBox.error("Ocorreu um erro tecnico. Tente novamente mais tarde.",{
+                        details: oError.message,
+                        styleClass : !sap.ui.Device.support.touch ? "sapUiSizeCompact" : "sapUiSizeCozy",
+                        actions : [MessageBox.Action.CLOSE]
+                    });
                 }
             }
             else {

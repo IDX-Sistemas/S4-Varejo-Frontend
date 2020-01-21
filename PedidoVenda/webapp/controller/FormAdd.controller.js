@@ -8,9 +8,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"PedidoVenda/service/api",
 	"PedidoVenda/libs/Moment"
-],
-
-	function (BaseController, MessageBox, ErrorHanlder, Filter, FilterOperator, api, Momentjs) {
+], function (BaseController, MessageBox, ErrorHanlder, Filter, FilterOperator, api, Momentjs) {
 		"use strict";
 
 		return BaseController.extend("PedidoVenda.controller.FormAdd", {
@@ -129,6 +127,8 @@ sap.ui.define([
 
 						const sNumeroCI = await this.handleSearchPreVenda(oEvent);
 
+                        debugger;
+                        
 						if (sNumeroCI) {
 
 							oView.setBusy(true);
@@ -165,13 +165,9 @@ sap.ui.define([
 					} catch (oError) {
 						MessageBox.error(oError.message);
 					}
-
-				}
-
-				else {
+				} else {
 					MessageBox.warning("Informe o numero da venda e a loja.");
 				}
-
 			},
 
 

@@ -12,7 +12,6 @@ sap.ui.define([
 	"br/com/idxtec/commons/helpers/Cartao2HelpDialog",
 	"PedidoVenda/helpers/PreVendaHelpDialog",
 	"PedidoVenda/model/formatter"
-		
 ], function(MessageBox, Filter, FilterOperator, Controller, 
 		    Lojas2HelpDialog, Cliente2HelpDialog, Produto2HelpDialog, Vendedor2HelpDialog, Secao2HelpDialog, Cartao2HelpDialog,
 		    PreVendaHelpDialog, formatter) {
